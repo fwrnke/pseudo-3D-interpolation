@@ -86,7 +86,7 @@
     <a href="." title="Pseudo-3D interpolation workflow" class="md-header__button md-logo" aria-label="Pseudo-3D interpolation workflow" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15 6.04 7.5 12 10.85l5.96-3.35L12 4.15M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -297,7 +297,7 @@
     <a href="." title="Pseudo-3D interpolation workflow" class="md-nav__button md-logo" aria-label="Pseudo-3D interpolation workflow" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15 6.04 7.5 12 10.85l5.96-3.35L12 4.15M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38Z"/></svg>
 
     </a>
     Pseudo-3D interpolation workflow
@@ -357,6 +357,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#workflow-structure" class="md-nav__link">
@@ -1190,6 +1197,23 @@
 <div class="highlight"><pre><span></span><code>Warnke et al. (2023) Pseudo-3D cube generation from densely spaced subbottom profiles via POCS interpolation
 </code></pre></div>
 <p>When using this workflow please refer to the <a href="citation/">citation information</a> and, in case of feedback or questions, the <a href="contact/">contact information</a>.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
+<p>The workflow repository includes a <code>conda</code> environment file (<code>environment.yml</code>) to install all required dependencies using the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt;&gt;&gt;<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</code></pre></div>
+<p>The workflow packages can be installed directly from GitHub:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/fwrnke/pseudo-3D-interpolation.git
+</code></pre></div>
+<p>or downloaded as a ZIP archive and installed locally:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./pseudo-3D-interpolation<span class="w">  </span><span class="c1"># root directory of unzipped package</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>&gt;&gt;&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>-e<span class="o">]</span><span class="w"> </span>.<span class="w">            </span><span class="c1"># -e: setuptools &quot;develop mode&quot;</span>
+</code></pre></div>
+<p>In both cases the required dependencies will be installed automatically if they are not already available.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <strong>Curvelet transform</strong> is only available on Unix systems via the <a href="https://github.com/PyLops/curvelops"><code>curvelops</code></a> package!<br />
+Please refer to the <a href="https://github.com/PyLops/curvelops#readme">README</a> of the project and <a href="https://github.com/DIG-Kaust/conda_envs/blob/main/install_curvelops.sh">additional installation instructions</a> if you plan to use this transform.</p>
+</div>
 <h2 id="workflow-structure">Workflow structure<a class="headerlink" href="#workflow-structure" title="Permanent link">#</a></h2>
 <p>This workflow was created to enable the interpolation of high-resolution subbottom profiler data (2-6 kHz) into pseudo-3D cubes. Potential applications include:</p>
 <ul>
