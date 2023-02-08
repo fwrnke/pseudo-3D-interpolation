@@ -2,222 +2,222 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/citation/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/contact/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/license/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/2D_despike/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/convert_segy2netcdf/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/coordinate_conversion/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/correct_delrt/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/merge_segys/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/mistie_correction/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/pad_vertical_offsets/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/static_correction/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/2D/tide_compensation/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/3D/3D_cube_interpolation/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/3D/apply_FFT_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/3D/apply_inverse_FFT_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/3D/convert_netcdf2segy_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/3D/cube_binning_geometry/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/3D/preprocessing_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_cnv_segy2netcdf/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_cube_POCS_interpolation_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_cube_apply_FFT/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_cube_apply_IFFT/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_cube_binning_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_cube_cnv_netcdf2segy_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_cube_preprocessing_3D/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_delrt_correction_segy/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_delrt_padding_segy/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_despiking_2D_segy/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_merge_segys/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_mistie_correction_segy/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_reproject_segy/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_static_correction_segy/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/api_tide_compensation_segy/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_POCS/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_backends/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_filter/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_header/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_plot/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_signal/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_threshold_operator/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_transform/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_utils/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://fwrnke.github.io/pseudo-3D-interpolation/api/functions/api_utils_IO/</loc>
-         <lastmod>2023-02-02</lastmod>
+         <lastmod>2023-02-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

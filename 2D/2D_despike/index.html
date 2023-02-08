@@ -1222,16 +1222,18 @@
 <li><code>--txt_suffix {despk}</code>: Suffix to append to output filename (default: <code>despk</code>).</li>
 <li><code>--use_delay</code>: Use delay recording time to split input data before despiking (e.g. for TOPAS, Parasound).</li>
 <li><code>--byte_delay {109}</code>: Byte position of input delay times in SEG-Y file(s) (default: <code>109</code>).</li>
-<li><code>--mode {MODE}</code>: Mode used to compute background amplitude and detect spikes in data.</li>
-<li><code>mean</code></li>
-<li><code>rms</code></li>
-<li><code>median</code></li>
+<li><code>--mode {MODE}</code>: Mode used to compute background amplitude and detect spikes in data.<ul>
+<li><code>mean</code>, <code>rms</code>, or <code>median</code></li>
+</ul>
+</li>
 <li><code>--window_time {TIME}</code>: Moving window length in time domain (TWT [ms]).</li>
 <li><code>--window_traces {TRACES}</code>: Moving window length in offset domain (traces [#]).</li>
 <li><code>--window_overlap {PERCENT}</code>: Time overlap of moving windows (%) (default: <code>10</code>).</li>
 <li><code>--threshold_factor {FACTOR}</code>: Used for spike detection (threshold_factor * background amplitude).</li>
-<li><code>--out_amplitude {METHOD}</code>: Replace spike amplitudes using selected method</li>
+<li><code>--out_amplitude {METHOD}</code>: Replace spike amplitudes using selected method<ul>
 <li><code>scaled</code>, <code>mode</code>, <code>threshold</code>, <code>zeros</code>, <code>median</code></li>
+</ul>
+</li>
 <li><code>--verbose {LEVEL}</code>: Level of output verbosity (default: <code>0</code>).</li>
 </ul>
 <h3 id="python-script">Python script<a class="headerlink" href="#python-script" title="Permanent link">#</a></h3>

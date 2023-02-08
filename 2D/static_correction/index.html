@@ -1229,12 +1229,12 @@ The <em>lower</em> and <em>upper</em> threshold values <span class="arithmatex">
 \]</div>
 <p>where <span class="arithmatex">\(k = 3\)</span> corresponds to the <span class="arithmatex">\(3\sigma\)</span> rule commonly used in threshold-based outlier detection.</p>
 <p>The assumption of a normal distribution, however, is often not suitable for real world datasets. In order to account for skewed distributions when detecting outliers, a <strong>double MAD</strong> algorithm has been proposed (<a href="https://eurekastatistics.com/using-the-median-absolute-deviation-to-find-outliers/">Rosenmai, 2013</a>). This simple approach includes the separate computation of a <em>lower</em> and <em>upper</em> MAD for values below and above the median:</p>
-<div class="arithmatex">\[
-\displaylines{
-    MAD^{lower} = c * median(|x_i^{lower} - \bar{x}|) \\
+<p>$$</p>
+<p>\displaylines{
+    MAD^{lower} = c * median(|x_i^{lower} - \bar{x}|) \
     MAD^{upper} = c * median(|x_i^{upper} - \bar{x}|)
 }
-\]</div>
+$$</p>
 <p>Consequently, the thresholds for the outlier detection change based on the corresponding MAD:</p>
 <div class="arithmatex">\[
 \displaylines{
@@ -1256,12 +1256,12 @@ The efffect of residual static is calculated as the difference between observed,
 <li>datalist of files to process (e.g., <code>datalist.txt</code>)</li>
 <li>directory with input files (e.g., <code>/input_dir</code>) </li>
 </ol>
-<p>There are two options to run the script. We recommend using the CLI entry point like:
+<p>There are two options to run the script. We recommend using the CLI entry point like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt;&gt;&gt;<span class="w"> </span>05_correct_static<span class="w"> </span><span class="o">{</span>filename.sgy<span class="w"> </span><span class="p">|</span><span class="w"> </span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
 </code></pre></div>
-Alternatively, the script can be executed using the (more verbose) command:
+<p>Alternatively, the script can be executed using the (more verbose) command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pseudo_3D_interpolation.static_correction_segy<span class="w"> </span><span class="o">{</span>filename.sgy<span class="w"> </span><span class="p">|</span><span class="w"> </span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>Optionally, the following parameters can be specified:</p>
 <ul>
 <li><code>--help</code>, <code>-h</code>: Show help.</li>
@@ -1278,7 +1278,12 @@ Alternatively, the script can be executed using the (more verbose) command:
 </ul>
 </li>
 <li><code>--win_mad {TRACES}</code>: Moving window length for MAD filter (traces [#]).</li>
-<li><code>--window_sg {7}</code>: Moving window length for Savitzky-Golay smoothing filter (traces [#]).</li>
+<li><code>--win_sg {7}</code>: Moving window length for Savitzky-Golay smoothing filter (traces [#]).</li>
+<li><code>--limit_shift</code>: Limit maximum vertical shift of individual traes (in samples)</li>
+<li><code>--limit_depressions</code>: Limit maximum vertical shift in area of seafloor depressions using a transition zone [pad, max_edges, max_center] (as integer)<ul>
+<li><em>default:</em> <code>[10, 10, 5]</code></li>
+</ul>
+</li>
 <li><code>--write_seafloor2trace</code>: If mode is <code>amp</code> write TWT of peak seafloor amplitude to SEG-Y trace header</li>
 <li><code>--write_aux</code>: Write trace information and computed static to auxiliary file (<code>*.sta</code>)</li>
 <li><code>--verbose {LEVEL}</code>, <code>-V</code>: Level of output verbosity (default: <code>0</code>).</li>

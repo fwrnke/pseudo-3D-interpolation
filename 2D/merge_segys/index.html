@@ -1172,17 +1172,17 @@
 <li>datalist of files to process (e.g., <code>datalist.txt</code>)</li>
 <li>directory with input files (e.g., <code>/input_dir</code>) </li>
 </ol>
-<p>There are two options to run the script. We recommend using the CLI entry point like:
+<p>There are two options to run the script. We recommend using the CLI entry point like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt;&gt;&gt;<span class="w"> </span>01_merge_segys<span class="w"> </span><span class="o">{</span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
 </code></pre></div>
-Alternatively, the script can be executed using the (more verbose) command:
+<p>Alternatively, the script can be executed using the (more verbose) command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pseudo_3D_interpolation.merge_segys<span class="w"> </span><span class="o">{</span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>Optionally, the following parameters can be specified:</p>
 <ul>
 <li><code>--help</code>, <code>-h</code>: Show help.</li>
-<li><code>--suffix {sgy}</code>: File suffix (default: <code>sgy</code>). Only used if directory is specified.</li>
 <li><code>--filename_suffix {SUFFIX}</code>: Filename suffix (e.g. <em>pad</em>, <em>static</em>) to filter input files. Only used if directory is specified (default: <code>None</code>)</li>
+<li><code>--suffix {sgy}</code>: File suffix (default: <code>sgy</code>). Only used if directory is specified.</li>
 <li><code>--txt_suffix {despk}</code>: Suffix to append to output filename (default: <code>merge</code>).</li>
 <li><code>--filesize_kB</code>: Threshold filesize (in kilobyte) to determine which SEG-Y will be merged (default: <code>2000</code> kB).</li>
 <li><code>--verbose {LEVEL}</code>, <code>-V</code>: Level of output verbosity (default: <code>0</code>).</li>

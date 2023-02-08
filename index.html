@@ -363,6 +363,26 @@
     Installation
   </a>
   
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-from-github-repository" class="md-nav__link">
+    1) From GitHub repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-local-installation" class="md-nav__link">
+    2) Local installation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1198,17 +1218,25 @@
 </code></pre></div>
 <p>When using this workflow please refer to the <a href="citation/">citation information</a> and, in case of feedback or questions, the <a href="contact/">contact information</a>.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p>The workflow repository includes a <code>conda</code> environment file (<code>environment.yml</code>) to install all required dependencies using the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt;&gt;&gt;<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span>environment.yml
-</code></pre></div>
+<p>This worfklow can be installed in two ways:</p>
+<h3 id="1-from-github-repository">1) From GitHub repository<a class="headerlink" href="#1-from-github-repository" title="Permanent link">#</a></h3>
 <p>The workflow packages can be installed directly from GitHub:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/fwrnke/pseudo-3D-interpolation.git
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt;&gt;&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/fwrnke/pseudo-3D-interpolation.git
 </code></pre></div>
-<p>or downloaded as a ZIP archive and installed locally:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./pseudo-3D-interpolation<span class="w">  </span><span class="c1"># root directory of unzipped package</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>&gt;&gt;&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>-e<span class="o">]</span><span class="w"> </span>.<span class="w">            </span><span class="c1"># -e: setuptools &quot;develop mode&quot;</span>
+<p>This installs all required dependencies and the workflow packages in your current (virtual) environment.</p>
+<h3 id="2-local-installation">2) Local installation<a class="headerlink" href="#2-local-installation" title="Permanent link">#</a></h3>
+<p>Alternatively, the workflow can be installed locally after downloading and unzipping the source code using the <a href="https://github.com/fwrnke/pseudo-3D-interpolation/archive/refs/heads/main.zip">ZIP archive</a> from GitHub.</p>
+<p>Navigate into the unzipped directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./pseudo-3D-interpolation<span class="w">  </span><span class="c1"># root directory of unzipped package</span>
 </code></pre></div>
-<p>In both cases the required dependencies will be installed automatically if they are not already available.</p>
+<p>Use the provided <code>conda</code> environment file to install dependencies (<strong>optional</strong>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt;&gt;&gt;<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span>environment.yml<span class="w">  </span><span class="c1"># install env</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>&gt;&gt;&gt;<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>pseudo_3d<span class="w">          </span><span class="c1"># activate new env (default name: &quot;pseudo_3d&quot;)</span>
+</code></pre></div>
+<p>Install the workflow package in your active environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&gt;&gt;&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>-e<span class="o">]</span><span class="w"> </span>.<span class="w">  </span><span class="c1"># -e: setuptools &quot;develop mode&quot;</span>
+</code></pre></div>
+<p>The required dependencies will be installed automatically if they are not already available (i.e. previously installed using <code>conda</code>).</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The <strong>Curvelet transform</strong> is only available on Unix systems via the <a href="https://github.com/PyLops/curvelops"><code>curvelops</code></a> package!<br />
@@ -1262,12 +1290,14 @@ Please refer to the <a href="https://github.com/PyLops/curvelops#readme">README<
 <p>In the second stage, the following processing steps are conducted (<strong>Figure 1</strong>, <em>lower panel</em>):</p>
 <ul>
 <li><a href="3D/cube_binning_geometry/">Binning and geometry setup</a></li>
-<li><a href="3D/preprocessing_3D/">Preprocessing</a> of sparse 3D cube</li>
+<li><a href="3D/preprocessing_3D/">Preprocessing</a> of sparse 3D cube<ul>
 <li><a href="3D/preprocessing_3D/#gain-application">Gain application</a></li>
 <li><a href="3D/preprocessing_3D/#trace-balancing">Amplitude balancing</a></li>
 <li><a href="3D/preprocessing_3D/#trace-balancing">Frequency filter</a> (lowpass, highpass, bandpass)</li>
 <li><a href="3D/preprocessing_3D/#trace-resampling">Trace resampling</a></li>
 <li><a href="3D/preprocessing_3D/#trace-envelope">Trace envelope</a></li>
+</ul>
+</li>
 <li><a href="3D/apply_FFT_3D/">Forward FFT</a> (<em>time</em> to <em>frequency</em> domain)</li>
 <li><a href="3D/3D_cube_interpolation/">Interpolation via Projection Onto Convex Sets (POCS) algorithm</a></li>
 <li><a href="3D/apply_inverse_FFT_3D/">Inverse FFT</a> (<em>frequency</em> to <em>time</em> domain)</li>

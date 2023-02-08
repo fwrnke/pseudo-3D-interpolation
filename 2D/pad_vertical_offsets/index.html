@@ -1165,10 +1165,10 @@
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">#</a></h2>
 <p>Check for vertical offsets in SEG-Y file(s) using trace header keyword <em>DelayRecordingTime</em> (<em>delrt</em>) and pad seismic trace with zeros to compensate variable recording starting times.</p>
 <ol>
-<li>Detect changing <em>DelayRecordingTime</em> based on trace header values</li>
-<li>Split input profile into multiple segments of different <em>derlt</em></li>
-<li>Pad start (<em>top</em>) and end (<em>bottom</em>) of traces per segment to <em>minimum</em> and <em>maximum delrt</em> (using zeros)</li>
-<li>Write padded data to new SEG-Y file(s)</li>
+<li><strong>Detect</strong> changing <em>DelayRecordingTime</em> based on trace header values</li>
+<li><strong>Split</strong> input profile into multiple segments of different <em>derlt</em></li>
+<li><strong>Pad</strong> start (<em>top</em>) and end (<em>bottom</em>) of traces per segment to <em>minimum</em> and <em>maximum delrt</em> (using zeros)</li>
+<li><strong>Write</strong> padded data to new SEG-Y file(s)</li>
 </ol>
 <figure>
 <p><img alt="Trace padding" src="../../figures/04_trace_padding.png" width="500" /></p>
@@ -1183,12 +1183,12 @@
 <li>datalist of files to process (e.g., <code>datalist.txt</code>)</li>
 <li>directory with input files (e.g., <code>/input_dir</code>) </li>
 </ol>
-<p>There are two options to run the script. We recommend using the CLI entry point like:
+<p>There are two options to run the script. We recommend using the CLI entry point like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt;&gt;&gt;<span class="w"> </span>04_pad_delrt<span class="w"> </span><span class="o">{</span>filename.sgy<span class="w"> </span><span class="p">|</span><span class="w"> </span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
 </code></pre></div>
-Alternatively, the script can be executed using the (more verbose) command:
+<p>Alternatively, the script can be executed using the (more verbose) command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pseudo_3D_interpolation.delrt_padding_segy<span class="w"> </span><span class="o">{</span>filename.sgy<span class="w"> </span><span class="p">|</span><span class="w"> </span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>Optionally, the following parameters can be specified:</p>
 <ul>
 <li><code>--help</code>, <code>-h</code>: Show help.</li>

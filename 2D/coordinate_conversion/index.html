@@ -1163,7 +1163,7 @@
 <h1 id="coordinate-conversion">Coordinate conversion<a class="headerlink" href="#coordinate-conversion" title="Permanent link">#</a></h1>
 <p>Utility script for coordinate conversion (and export) from SEG-Y file(s).</p>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">#</a></h2>
-<p>This utility script reproject (i.e. transforms) coordinates read from SEG-Y header(s) to different coordinate reference systems (CRS). The coordinate transformation is conducted using the Python package <a href="https://pyproj4.github.io/pyproj/stable/"><code>pyproj</code></a>, an interface to the well-kown and established <a href="https://proj.org/">PROJ</a> library.<br />
+<p>This utility script reproject (i.e. transforms) coordinates read from SEG-Y header(s) to different coordinate reference systems (CRS). The coordinate transformation is conducted using the Python package <a href="https://pyproj4.github.io/pyproj/stable/"><code>pyproj</code></a>, an interface to the well-kown and established <a href="https://proj.org/">PROJ</a> library.
 Input and output CRS can be specified as either <a href="https://epsg.io/">EPSG codes</a> (e.g., <code>EPSG:4326</code>) or <a href="https://proj.org/usage/quickstart.html">PROJ.4 strings</a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+proj=longlat +datum=WGS84 +no_defs
 </code></pre></div>
@@ -1180,12 +1180,12 @@ Input and output CRS can be specified as either <a href="https://epsg.io/">EPSG 
 <li>datalist of files to process (e.g., <code>datalist.txt</code>)</li>
 <li>directory with input files (e.g., <code>/input_dir</code>) </li>
 </ol>
-<p>There are two options to run the script. We recommend using the CLI entry point like:
+<p>There are two options to run the script. We recommend using the CLI entry point like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span>02_reproject_segy<span class="w"> </span><span class="o">{</span>filename.sgy<span class="w"> </span><span class="p">|</span><span class="w"> </span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
 </code></pre></div>
-Alternatively, the script can be executed using the (more verbose) command:
+<p>Alternatively, the script can be executed using the (more verbose) command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt;&gt;&gt;<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pseudo_3D_interpolation.reproject_segy<span class="w"> </span><span class="o">{</span>filename.sgy<span class="w"> </span><span class="p">|</span><span class="w"> </span>datalist.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;/directory&gt;<span class="o">}</span><span class="w"> </span><span class="o">[</span>optional<span class="w"> </span>parameters<span class="o">]</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>Optionally, the following parameters can be specified:</p>
 <ul>
 <li><code>--help</code>, <code>-h</code>: Show help.</li>
@@ -1202,9 +1202,9 @@ Alternatively, the script can be executed using the (more verbose) command:
 </ul>
 </li>
 <li><code>--src_coords</code>: Byte position of input coordinates in SEG-Y file(s).<ul>
-<li><code>source</code>: 73, 77</li>
-<li><code>group</code>: 81, 85</li>
-<li><code>CDP</code>: 181, 185</li>
+<li><code>source</code>: (73, 77)</li>
+<li><code>group</code>: (81, 85)</li>
+<li><code>CDP</code>: (181, 185)</li>
 </ul>
 </li>
 <li><code>--dst_coords</code>:  Byte position of output coordinates in SEG-Y file(s).</li>

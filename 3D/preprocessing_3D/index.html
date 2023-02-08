@@ -1282,73 +1282,31 @@ Computing the trace envelope is a common processing step in order to display sub
 </code></pre></div>
 <p>Optionally, the following parameters can be specified:</p>
 <ul>
-<li>
-<p><code>--help</code>, <code>-h</code>: Show help.</p>
+<li><code>--help</code>, <code>-h</code>: Show help.</li>
+<li><code>--params_netcdf</code>: Path of netCDF parameter file (YAML format). <strong>Required!</strong></li>
+<li><code>--path_out</code>: Output path of pre-processed 3D cube.</li>
+<li><code>--gain</code>: Parameter for (time-variant) gain function(s), e.g. <code>tpow=2 gpow=0.5</code></li>
+<li><code>--use_samples</code>: Use samples instead of TWT for (time-variant) gain function(s).</li>
+<li><code>--balance</code>: Method to define reference amplitude for (time-invariant) scaling. <ul>
+<li><code>rms</code>, <code>max</code></li>
+</ul>
 </li>
-<li>
-<p><code>--params_netcdf</code>: Path of netCDF parameter file (YAML format). <strong>Required!</strong></p>
+<li><code>--store_ref_amp</code>: Store reference amplitude used for trace balancing as netCDF variable.</li>
+<li><code>--filter</code>: optional filter to apply prior to FFT computation.<ul>
+<li><code>highpass</code>, <code>lowpass</code>, <code>bandpass</code></li>
+</ul>
 </li>
-<li>
-<p><code>--path_out</code>: Output path of pre-processed 3D cube.</p>
+<li><code>--filter_freqs</code>: Filter corner frequencies (in Hz), e.g. <code>1000 1200 6000 6200</code></li>
+<li><code>--resampling_function</code>: Resampling function from <a href="https://docs.scipy.org/doc/scipy/reference/signal.html"><code>scipy.signal</code></a>.<ul>
+<li><code>resample</code>, <code>resample_poly</code></li>
+</ul>
 </li>
-<li>
-<p><code>--gain</code>: Parameter for (time-variant) gain function(s), e.g. <code>tpow=2 gpow=0.5</code></p>
-</li>
-<li>
-<p><code>--use_samples</code>: Use samples instead of TWT for (time-variant) gain function(s).</p>
-</li>
-<li>
-<p><code>--balance</code>: Method to define reference amplitude for (time-invariant) scaling.</p>
-</li>
-<li>
-<p><code>rms</code></p>
-</li>
-<li>
-<p><code>max</code></p>
-</li>
-<li>
-<p><code>--store_ref_amp</code>: Store reference amplitude used for trace balancing as netCDF variable.</p>
-</li>
-<li>
-<p><code>--filter</code>: ptional filter to apply prior to FFT computation.</p>
-</li>
-<li>
-<p><code>highpass</code></p>
-</li>
-<li><code>lowpass</code></li>
-<li>
-<p><code>bandpass</code></p>
-</li>
-<li>
-<p><code>--filter_freqs</code>: Filter corner frequencies (in Hz), e.g. <code>1000 1200 6000 6200</code></p>
-</li>
-<li>
-<p><code>--resampling_function</code>: Resampling function from <a href="https://docs.scipy.org/doc/scipy/reference/signal.html"><code>scipy.signal</code></a>.</p>
-</li>
-<li>
-<p><code>resample</code></p>
-</li>
-<li>
-<p><code>resample_poly</code></p>
-</li>
-<li>
-<p><code>--resampling_interval</code>, <code>-dt</code>: Output sampling interval/period of signal (in ms).</p>
-</li>
-<li>
-<p><code>--resampling_frequency</code>, <code>-fs</code>: Output sampling frequency/rate of signal (in Hz).</p>
-</li>
-<li>
-<p><code>--resampling_factor</code>, <code>-f</code>: Resampling factor (<em>&lt;1</em>: upsampling, <em>&gt;1</em>: downsampling).</p>
-</li>
-<li>
-<p><code>--window_resample</code>: Window function for resampling (from <a href="https://docs.scipy.org/doc/scipy/reference/signal.html#window-functions"><code>scipy.signal.windows</code></a>).</p>
-</li>
-<li>
-<p><code>--envelope</code>: Calculate trace envelope.</p>
-</li>
-<li>
-<p><code>--verbose {LEVEL}</code>: Level of output verbosity (default: <code>0</code>).</p>
-</li>
+<li><code>--resampling_interval</code>, <code>-dt</code>: Output sampling interval/period of signal (in ms).</li>
+<li><code>--resampling_frequency</code>, <code>-fs</code>: Output sampling frequency/rate of signal (in Hz).</li>
+<li><code>--resampling_factor</code>, <code>-f</code>: Resampling factor (<em>&lt;1</em>: upsampling, <em>&gt;1</em>: downsampling).</li>
+<li><code>--window_resample</code>: Window function for resampling (from <a href="https://docs.scipy.org/doc/scipy/reference/signal.html#window-functions"><code>scipy.signal.windows</code></a>).</li>
+<li><code>--envelope</code>: Calculate trace envelope.</li>
+<li><code>--verbose {LEVEL}</code>: Level of output verbosity (default: <code>0</code>).</li>
 </ul>
 
 

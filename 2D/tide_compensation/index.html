@@ -1244,17 +1244,23 @@
 <li><code>--suffix {sgy}</code>: File suffix (default: <code>sgy</code>). Only used if directory is specified.</li>
 <li><code>--filename_suffix {SUFFIX}</code>: Filename suffix (e.g. <code>pad</code>, <code>static</code>) to filter input files. Only used if directory is specified.</li>
 <li><code>--txt_suffix {despk}</code>: Suffix to append to output filename (default: <code>despk</code>).</li>
-<li><code>--constituents</code>, <code>-c</code>: Available tidal constituents supported by TPXO9 atlas model.</li>
+<li><code>--constituents</code>, <code>-c</code>: Available tidal constituents supported by TPXO9 atlas model.<ul>
 <li><strong>defaults:</strong> M2, S2, K1, O1, N2, P1, K2, Q1,</li>
 <li>2N2, K2, M4, MF, MM, MN4, MS4,</li>
 <li>S1 (<strong>only v5</strong>)</li>
+</ul>
+</li>
 <li><code>--correct_minor</code>: Correct for minor tidal constituents.</li>
-<li><code>--src_coords</code>: Byte position of input coordinates in SEG-Y file(s).</li>
+<li><code>--src_coords</code>: Byte position of input coordinates in SEG-Y file(s).<ul>
 <li><code>source</code> (<strong>default</strong>)</li>
 <li><code>CDP</code></li>
 <li><code>group</code></li>
-<li><code>--crs_src</code>: Source CRS of SEG-Y file(s). Indicate using EPSG code or PROJ.4 string.</li>
+</ul>
+</li>
+<li><code>--crs_src</code>: Source CRS of SEG-Y file(s). Indicate using EPSG code or PROJ.4 string.<ul>
 <li><strong>default:</strong> EPSG:32760 (<a href="https://epsg.io/32760">WGS 84 / UTM zone 60S</a>)</li>
+</ul>
+</li>
 <li><code>--write_aux</code>: Write times and tide predictions to auxiliary file (<code>*.tid</code>).</li>
 <li><code>--verbose {LEVEL}</code>, <code>-V</code>: Level of output verbosity (default: <code>0</code>).</li>
 </ul>

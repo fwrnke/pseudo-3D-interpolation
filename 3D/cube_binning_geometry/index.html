@@ -1297,9 +1297,9 @@
 </li>
 <li>
 <p><code>--stacking_method</code>: Stacking method for multiple traces within one bin (default: <code>average</code>)</p>
-</li>
-<li>
-<p>'average', 'median', 'nearest', or 'IDW'</p>
+<ul>
+<li>'average', 'median', 'nearest', or 'IDW'</li>
+</ul>
 </li>
 <li>
 <p><code>--factor_dist</code>: Distance factor controlling the impact of weighting function: <span class="arithmatex">\(1/(distance^{factor})\)</span>. Only used if stacking_method=<code>IDW</code>.</p>
@@ -1395,8 +1395,8 @@
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nt">attribute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amp</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># bin size(s) for il/xl directions (in CRS units, e.g. meter)</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nt">bin_size</span><span class="p">:</span><span class="w"> </span><span class="c1">#5</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">   </span><span class="c1"># iline bin size (along y-axis), equals distance between crosslines (`dxline`)</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">   </span><span class="c1"># xline bin size (along x-axis), equals distance between inlines (`diline`)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">   </span><span class="c1"># iline bin size (along y-axis)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">   </span><span class="c1"># xline bin size (along x-axis)</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># min/max TWT limits of output pseudo-3D cube (in ms)</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nt">twt_limits</span><span class="p">:</span><span class="w"> </span>
 <a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">725</span>
