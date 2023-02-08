@@ -3465,7 +3465,7 @@ after actual seafloor detection (default: <code>True</code>).</p>
 <a id="__codelineno-0-656" name="__codelineno-0-656"></a>            <span class="n">idx_sta_lta</span><span class="p">,</span>
 <a id="__codelineno-0-657" name="__codelineno-0-657"></a>        <span class="p">)</span>
 <a id="__codelineno-0-658" name="__codelineno-0-658"></a>
-<a id="__codelineno-0-659" name="__codelineno-0-659"></a>    <span class="c1"># # (3) outlier detection &amp; removal #TODO: unnecessary?</span>
+<a id="__codelineno-0-659" name="__codelineno-0-659"></a>    <span class="c1"># # (3) outlier detection &amp; removal  # TODO: unnecessary?</span>
 <a id="__codelineno-0-660" name="__codelineno-0-660"></a>    <span class="k">if</span> <span class="n">win_mad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-661" name="__codelineno-0-661"></a>        <span class="n">win_mad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">idx_sta_lta</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">)</span>
 <a id="__codelineno-0-662" name="__codelineno-0-662"></a>        <span class="n">win_mad</span> <span class="o">=</span> <span class="n">win_mad</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">win_mad</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">win_mad</span>  <span class="c1"># must be odd</span>

@@ -1925,8 +1925,7 @@ Applied Geophysics, 12(2), 169–178. <a href="https://doi.org/10.1007/s11770-01
 <span class="normal"><a href="#__codelineno-0-365">365</a></span>
 <span class="normal"><a href="#__codelineno-0-366">366</a></span>
 <span class="normal"><a href="#__codelineno-0-367">367</a></span>
-<span class="normal"><a href="#__codelineno-0-368">368</a></span>
-<span class="normal"><a href="#__codelineno-0-369">369</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-169" name="__codelineno-0-169"></a><span class="k">def</span> <span class="nf">get_threshold_decay</span><span class="p">(</span>
+<span class="normal"><a href="#__codelineno-0-368">368</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-169" name="__codelineno-0-169"></a><span class="k">def</span> <span class="nf">get_threshold_decay</span><span class="p">(</span>
 <a id="__codelineno-0-170" name="__codelineno-0-170"></a>    <span class="n">thresh_model</span><span class="p">,</span>
 <a id="__codelineno-0-171" name="__codelineno-0-171"></a>    <span class="n">niter</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <a id="__codelineno-0-172" name="__codelineno-0-172"></a>    <span class="n">transform_kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2045,88 +2044,87 @@ Applied Geophysics, 12(2), 169–178. <a href="https://doi.org/10.1007/s11770-01
 <a id="__codelineno-0-285" name="__codelineno-0-285"></a>            <span class="n">x_fwd_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 <a id="__codelineno-0-286" name="__codelineno-0-286"></a>        <span class="k">elif</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;CURVELET&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">]:</span>
 <a id="__codelineno-0-287" name="__codelineno-0-287"></a>            <span class="n">axis</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-288" name="__codelineno-0-288"></a>            <span class="c1"># x_fwd_max = np.abs(x_fwd).max()  # FIXME</span>
-<a id="__codelineno-0-289" name="__codelineno-0-289"></a>            <span class="n">x_fwd_max</span> <span class="o">=</span> <span class="n">x_fwd</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<a id="__codelineno-0-290" name="__codelineno-0-290"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-291" name="__codelineno-0-291"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<a id="__codelineno-0-292" name="__codelineno-0-292"></a>                <span class="s1">&#39;`transform_kind` must be specified for thresh_model=&quot;data-driven&quot; or kind=&quot;values&quot;!&#39;</span>
-<a id="__codelineno-0-293" name="__codelineno-0-293"></a>            <span class="p">)</span>
-<a id="__codelineno-0-294" name="__codelineno-0-294"></a>
-<a id="__codelineno-0-295" name="__codelineno-0-295"></a>        <span class="c1"># min/max regularization factors</span>
-<a id="__codelineno-0-296" name="__codelineno-0-296"></a>        <span class="c1">#   adaptive calculation of minimum threshold (Zhao et al., 2021)</span>
-<a id="__codelineno-0-297" name="__codelineno-0-297"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p_min</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p_min</span> <span class="o">==</span> <span class="s1">&#39;adaptive&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-298" name="__codelineno-0-298"></a>            <span class="c1"># single-scale transform</span>
-<a id="__codelineno-0-299" name="__codelineno-0-299"></a>            <span class="k">if</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">]:</span>
-<a id="__codelineno-0-300" name="__codelineno-0-300"></a>                <span class="n">tau_min</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">x_fwd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-<a id="__codelineno-0-301" name="__codelineno-0-301"></a>
-<a id="__codelineno-0-302" name="__codelineno-0-302"></a>            <span class="c1"># mulit-scale transform</span>
-<a id="__codelineno-0-303" name="__codelineno-0-303"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SHEARLET&#39;</span><span class="p">]:</span>
-<a id="__codelineno-0-304" name="__codelineno-0-304"></a>                <span class="c1"># calculate regularization factor `tau_min` for each scale</span>
-<a id="__codelineno-0-305" name="__codelineno-0-305"></a>                <span class="n">nscales</span> <span class="o">=</span> <span class="n">get_number_scales</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">)</span>
-<a id="__codelineno-0-306" name="__codelineno-0-306"></a>                <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
-<a id="__codelineno-0-307" name="__codelineno-0-307"></a>                    <span class="p">(</span>
-<a id="__codelineno-0-308" name="__codelineno-0-308"></a>                        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span>  <span class="c1"># low-pass solution</span>
-<a id="__codelineno-0-309" name="__codelineno-0-309"></a>                        <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span>
-<a id="__codelineno-0-310" name="__codelineno-0-310"></a>                            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nscales</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nscales</span><span class="p">)]</span>
-<a id="__codelineno-0-311" name="__codelineno-0-311"></a>                        <span class="p">),</span>
-<a id="__codelineno-0-312" name="__codelineno-0-312"></a>                    <span class="p">)</span>
-<a id="__codelineno-0-313" name="__codelineno-0-313"></a>                <span class="p">)</span>
-<a id="__codelineno-0-314" name="__codelineno-0-314"></a>                <span class="n">tau_min</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-315" name="__codelineno-0-315"></a>                    <span class="mi">1</span>
-<a id="__codelineno-0-316" name="__codelineno-0-316"></a>                    <span class="o">/</span> <span class="mi">3</span>
-<a id="__codelineno-0-317" name="__codelineno-0-317"></a>                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span>  <span class="c1"># noqa</span>
-<a id="__codelineno-0-318" name="__codelineno-0-318"></a>                        <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-319" name="__codelineno-0-319"></a>                        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">x_fwd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-<a id="__codelineno-0-320" name="__codelineno-0-320"></a>                    <span class="p">)</span>
-<a id="__codelineno-0-321" name="__codelineno-0-321"></a>                <span class="p">)</span>
-<a id="__codelineno-0-322" name="__codelineno-0-322"></a>            <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-323" name="__codelineno-0-323"></a>                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-<a id="__codelineno-0-324" name="__codelineno-0-324"></a>                    <span class="sa">f</span><span class="s1">&#39;p_min=`adaptive` is not implemented for </span><span class="si">{</span><span class="n">transform_kind</span><span class="si">}</span><span class="s1"> transform&#39;</span>
-<a id="__codelineno-0-325" name="__codelineno-0-325"></a>                <span class="p">)</span>
-<a id="__codelineno-0-326" name="__codelineno-0-326"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-327" name="__codelineno-0-327"></a>            <span class="n">tau_min</span> <span class="o">=</span> <span class="n">p_min</span> <span class="o">*</span> <span class="n">x_fwd_max</span>
-<a id="__codelineno-0-328" name="__codelineno-0-328"></a>        <span class="n">tau_max</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">*</span> <span class="n">x_fwd_max</span>
-<a id="__codelineno-0-329" name="__codelineno-0-329"></a>
-<a id="__codelineno-0-330" name="__codelineno-0-330"></a>    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;factors&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-331" name="__codelineno-0-331"></a>        <span class="n">tau_max</span> <span class="o">=</span> <span class="n">p_max</span>
-<a id="__codelineno-0-332" name="__codelineno-0-332"></a>        <span class="n">tau_min</span> <span class="o">=</span> <span class="n">p_min</span>
-<a id="__codelineno-0-333" name="__codelineno-0-333"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-334" name="__codelineno-0-334"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Parameter `kind` only supports arguments &quot;values&quot; or &quot;factors&quot;&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-335" name="__codelineno-0-335"></a>
-<a id="__codelineno-0-336" name="__codelineno-0-336"></a>    <span class="c1"># --- iteration-based threshold factor ---</span>
-<a id="__codelineno-0-337" name="__codelineno-0-337"></a>    <span class="n">_iiter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">niter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-338" name="__codelineno-0-338"></a>
-<a id="__codelineno-0-339" name="__codelineno-0-339"></a>    <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-340" name="__codelineno-0-340"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">((</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
-<a id="__codelineno-0-341" name="__codelineno-0-341"></a>    <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-342" name="__codelineno-0-342"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">((</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))[:,</span> <span class="kc">None</span><span class="p">]</span>
-<a id="__codelineno-0-343" name="__codelineno-0-343"></a>    <span class="k">elif</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;CURVELET&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">]:</span>
-<a id="__codelineno-0-344" name="__codelineno-0-344"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">(</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-345" name="__codelineno-0-345"></a>    <span class="k">elif</span> <span class="n">transform_kind</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-346" name="__codelineno-0-346"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">(</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-347" name="__codelineno-0-347"></a>
-<a id="__codelineno-0-348" name="__codelineno-0-348"></a>    <span class="c1"># --- thresholding operator ---</span>
-<a id="__codelineno-0-349" name="__codelineno-0-349"></a>    <span class="k">if</span> <span class="n">thresh_model</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-350" name="__codelineno-0-350"></a>        <span class="n">tau</span> <span class="o">=</span> <span class="n">tau_max</span> <span class="o">-</span> <span class="p">(</span><span class="n">tau_max</span> <span class="o">-</span> <span class="n">tau_min</span><span class="p">)</span> <span class="o">*</span> <span class="n">imultiplier</span>
-<a id="__codelineno-0-351" name="__codelineno-0-351"></a>
-<a id="__codelineno-0-352" name="__codelineno-0-352"></a>    <span class="k">elif</span> <span class="s1">&#39;exponential&#39;</span> <span class="ow">in</span> <span class="n">thresh_model</span><span class="p">:</span>
-<a id="__codelineno-0-353" name="__codelineno-0-353"></a>        <span class="n">q</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">thresh_model</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">thresh_model</span> <span class="k">else</span> <span class="mf">1.0</span>  <span class="c1"># Zhao et al. (2021)</span>
-<a id="__codelineno-0-354" name="__codelineno-0-354"></a>        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tau_min</span> <span class="o">/</span> <span class="n">tau_max</span><span class="p">)</span>
-<a id="__codelineno-0-355" name="__codelineno-0-355"></a>        <span class="n">tau</span> <span class="o">=</span> <span class="n">tau_max</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="n">imultiplier</span><span class="o">**</span><span class="n">q</span><span class="p">)</span>
-<a id="__codelineno-0-356" name="__codelineno-0-356"></a>
-<a id="__codelineno-0-357" name="__codelineno-0-357"></a>    <span class="k">elif</span> <span class="n">thresh_model</span> <span class="o">==</span> <span class="s1">&#39;data-driven&#39;</span> <span class="ow">and</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">,</span> <span class="s1">&#39;CURVELET&#39;</span><span class="p">]:</span>
-<a id="__codelineno-0-358" name="__codelineno-0-358"></a>        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">_iiter</span><span class="o">.</span><span class="n">size</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x_fwd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-<a id="__codelineno-0-359" name="__codelineno-0-359"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_fwd</span> <span class="o">&gt;</span> <span class="n">tau_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_fwd</span> <span class="o">&lt;</span> <span class="n">tau_max</span><span class="p">)</span>
-<a id="__codelineno-0-360" name="__codelineno-0-360"></a>        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">[</span><span class="n">idx</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<a id="__codelineno-0-361" name="__codelineno-0-361"></a>        <span class="n">Nv</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">size</span>
-<a id="__codelineno-0-362" name="__codelineno-0-362"></a>        <span class="n">tau</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-0-363" name="__codelineno-0-363"></a>        <span class="n">tau</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">_iiter</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Nv</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)]</span>
-<a id="__codelineno-0-364" name="__codelineno-0-364"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-365" name="__codelineno-0-365"></a>        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-<a id="__codelineno-0-366" name="__codelineno-0-366"></a>            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">thresh_model</span><span class="si">}</span><span class="s1"> is not implemented for </span><span class="si">{</span><span class="n">transform_kind</span><span class="si">}</span><span class="s1"> transform!&#39;</span>
-<a id="__codelineno-0-367" name="__codelineno-0-367"></a>        <span class="p">)</span>
-<a id="__codelineno-0-368" name="__codelineno-0-368"></a>
-<a id="__codelineno-0-369" name="__codelineno-0-369"></a>    <span class="k">return</span> <span class="n">tau</span>
+<a id="__codelineno-0-288" name="__codelineno-0-288"></a>            <span class="n">x_fwd_max</span> <span class="o">=</span> <span class="n">x_fwd</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<a id="__codelineno-0-289" name="__codelineno-0-289"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-291" name="__codelineno-0-291"></a>                <span class="s1">&#39;`transform_kind` must be specified for thresh_model=&quot;data-driven&quot; or kind=&quot;values&quot;!&#39;</span>
+<a id="__codelineno-0-292" name="__codelineno-0-292"></a>            <span class="p">)</span>
+<a id="__codelineno-0-293" name="__codelineno-0-293"></a>
+<a id="__codelineno-0-294" name="__codelineno-0-294"></a>        <span class="c1"># min/max regularization factors</span>
+<a id="__codelineno-0-295" name="__codelineno-0-295"></a>        <span class="c1">#   adaptive calculation of minimum threshold (Zhao et al., 2021)</span>
+<a id="__codelineno-0-296" name="__codelineno-0-296"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p_min</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p_min</span> <span class="o">==</span> <span class="s1">&#39;adaptive&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297"></a>            <span class="c1"># single-scale transform</span>
+<a id="__codelineno-0-298" name="__codelineno-0-298"></a>            <span class="k">if</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">]:</span>
+<a id="__codelineno-0-299" name="__codelineno-0-299"></a>                <span class="n">tau_min</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">x_fwd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<a id="__codelineno-0-300" name="__codelineno-0-300"></a>
+<a id="__codelineno-0-301" name="__codelineno-0-301"></a>            <span class="c1"># mulit-scale transform</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SHEARLET&#39;</span><span class="p">]:</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303"></a>                <span class="c1"># calculate regularization factor `tau_min` for each scale</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304"></a>                <span class="n">nscales</span> <span class="o">=</span> <span class="n">get_number_scales</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">)</span>
+<a id="__codelineno-0-305" name="__codelineno-0-305"></a>                <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306"></a>                    <span class="p">(</span>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a>                        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span>  <span class="c1"># low-pass solution</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a>                        <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span>
+<a id="__codelineno-0-309" name="__codelineno-0-309"></a>                            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nscales</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nscales</span><span class="p">)]</span>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a>                        <span class="p">),</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a>                    <span class="p">)</span>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a>                <span class="p">)</span>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a>                <span class="n">tau_min</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a>                    <span class="mi">1</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315"></a>                    <span class="o">/</span> <span class="mi">3</span>
+<a id="__codelineno-0-316" name="__codelineno-0-316"></a>                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span>  <span class="c1"># noqa</span>
+<a id="__codelineno-0-317" name="__codelineno-0-317"></a>                        <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-318" name="__codelineno-0-318"></a>                        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">x_fwd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<a id="__codelineno-0-319" name="__codelineno-0-319"></a>                    <span class="p">)</span>
+<a id="__codelineno-0-320" name="__codelineno-0-320"></a>                <span class="p">)</span>
+<a id="__codelineno-0-321" name="__codelineno-0-321"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-322" name="__codelineno-0-322"></a>                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323"></a>                    <span class="sa">f</span><span class="s1">&#39;p_min=`adaptive` is not implemented for </span><span class="si">{</span><span class="n">transform_kind</span><span class="si">}</span><span class="s1"> transform&#39;</span>
+<a id="__codelineno-0-324" name="__codelineno-0-324"></a>                <span class="p">)</span>
+<a id="__codelineno-0-325" name="__codelineno-0-325"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-326" name="__codelineno-0-326"></a>            <span class="n">tau_min</span> <span class="o">=</span> <span class="n">p_min</span> <span class="o">*</span> <span class="n">x_fwd_max</span>
+<a id="__codelineno-0-327" name="__codelineno-0-327"></a>        <span class="n">tau_max</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">*</span> <span class="n">x_fwd_max</span>
+<a id="__codelineno-0-328" name="__codelineno-0-328"></a>
+<a id="__codelineno-0-329" name="__codelineno-0-329"></a>    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;factors&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-330" name="__codelineno-0-330"></a>        <span class="n">tau_max</span> <span class="o">=</span> <span class="n">p_max</span>
+<a id="__codelineno-0-331" name="__codelineno-0-331"></a>        <span class="n">tau_min</span> <span class="o">=</span> <span class="n">p_min</span>
+<a id="__codelineno-0-332" name="__codelineno-0-332"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-333" name="__codelineno-0-333"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Parameter `kind` only supports arguments &quot;values&quot; or &quot;factors&quot;&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-334" name="__codelineno-0-334"></a>
+<a id="__codelineno-0-335" name="__codelineno-0-335"></a>    <span class="c1"># --- iteration-based threshold factor ---</span>
+<a id="__codelineno-0-336" name="__codelineno-0-336"></a>    <span class="n">_iiter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">niter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-337" name="__codelineno-0-337"></a>
+<a id="__codelineno-0-338" name="__codelineno-0-338"></a>    <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-339" name="__codelineno-0-339"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">((</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<a id="__codelineno-0-340" name="__codelineno-0-340"></a>    <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-341" name="__codelineno-0-341"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">((</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))[:,</span> <span class="kc">None</span><span class="p">]</span>
+<a id="__codelineno-0-342" name="__codelineno-0-342"></a>    <span class="k">elif</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;CURVELET&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">]:</span>
+<a id="__codelineno-0-343" name="__codelineno-0-343"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">(</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-344" name="__codelineno-0-344"></a>    <span class="k">elif</span> <span class="n">transform_kind</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-345" name="__codelineno-0-345"></a>        <span class="n">imultiplier</span> <span class="o">=</span> <span class="p">(</span><span class="n">_iiter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-346" name="__codelineno-0-346"></a>
+<a id="__codelineno-0-347" name="__codelineno-0-347"></a>    <span class="c1"># --- thresholding operator ---</span>
+<a id="__codelineno-0-348" name="__codelineno-0-348"></a>    <span class="k">if</span> <span class="n">thresh_model</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-349" name="__codelineno-0-349"></a>        <span class="n">tau</span> <span class="o">=</span> <span class="n">tau_max</span> <span class="o">-</span> <span class="p">(</span><span class="n">tau_max</span> <span class="o">-</span> <span class="n">tau_min</span><span class="p">)</span> <span class="o">*</span> <span class="n">imultiplier</span>
+<a id="__codelineno-0-350" name="__codelineno-0-350"></a>
+<a id="__codelineno-0-351" name="__codelineno-0-351"></a>    <span class="k">elif</span> <span class="s1">&#39;exponential&#39;</span> <span class="ow">in</span> <span class="n">thresh_model</span><span class="p">:</span>
+<a id="__codelineno-0-352" name="__codelineno-0-352"></a>        <span class="n">q</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">thresh_model</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">thresh_model</span> <span class="k">else</span> <span class="mf">1.0</span>  <span class="c1"># Zhao et al. (2021)</span>
+<a id="__codelineno-0-353" name="__codelineno-0-353"></a>        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tau_min</span> <span class="o">/</span> <span class="n">tau_max</span><span class="p">)</span>
+<a id="__codelineno-0-354" name="__codelineno-0-354"></a>        <span class="n">tau</span> <span class="o">=</span> <span class="n">tau_max</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="n">imultiplier</span><span class="o">**</span><span class="n">q</span><span class="p">)</span>
+<a id="__codelineno-0-355" name="__codelineno-0-355"></a>
+<a id="__codelineno-0-356" name="__codelineno-0-356"></a>    <span class="k">elif</span> <span class="n">thresh_model</span> <span class="o">==</span> <span class="s1">&#39;data-driven&#39;</span> <span class="ow">and</span> <span class="n">transform_kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">,</span> <span class="s1">&#39;CURVELET&#39;</span><span class="p">]:</span>
+<a id="__codelineno-0-357" name="__codelineno-0-357"></a>        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">_iiter</span><span class="o">.</span><span class="n">size</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x_fwd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<a id="__codelineno-0-358" name="__codelineno-0-358"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_fwd</span> <span class="o">&gt;</span> <span class="n">tau_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_fwd</span> <span class="o">&lt;</span> <span class="n">tau_max</span><span class="p">)</span>
+<a id="__codelineno-0-359" name="__codelineno-0-359"></a>        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x_fwd</span><span class="p">[</span><span class="n">idx</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-360" name="__codelineno-0-360"></a>        <span class="n">Nv</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">size</span>
+<a id="__codelineno-0-361" name="__codelineno-0-361"></a>        <span class="n">tau</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-362" name="__codelineno-0-362"></a>        <span class="n">tau</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">_iiter</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Nv</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">niter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)]</span>
+<a id="__codelineno-0-363" name="__codelineno-0-363"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-364" name="__codelineno-0-364"></a>        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+<a id="__codelineno-0-365" name="__codelineno-0-365"></a>            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">thresh_model</span><span class="si">}</span><span class="s1"> is not implemented for </span><span class="si">{</span><span class="n">transform_kind</span><span class="si">}</span><span class="s1"> transform!&#39;</span>
+<a id="__codelineno-0-366" name="__codelineno-0-366"></a>        <span class="p">)</span>
+<a id="__codelineno-0-367" name="__codelineno-0-367"></a>
+<a id="__codelineno-0-368" name="__codelineno-0-368"></a>    <span class="k">return</span> <span class="n">tau</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -2319,7 +2317,8 @@ IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing
 
       <details class="quote">
         <summary>Source code in <code>pseudo_3D_interpolation\functions\POCS.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-372">372</a></span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-371">371</a></span>
+<span class="normal"><a href="#__codelineno-0-372">372</a></span>
 <span class="normal"><a href="#__codelineno-0-373">373</a></span>
 <span class="normal"><a href="#__codelineno-0-374">374</a></span>
 <span class="normal"><a href="#__codelineno-0-375">375</a></span>
@@ -2603,293 +2602,292 @@ IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing
 <span class="normal"><a href="#__codelineno-0-653">653</a></span>
 <span class="normal"><a href="#__codelineno-0-654">654</a></span>
 <span class="normal"><a href="#__codelineno-0-655">655</a></span>
-<span class="normal"><a href="#__codelineno-0-656">656</a></span>
-<span class="normal"><a href="#__codelineno-0-657">657</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-372" name="__codelineno-0-372"></a><span class="k">def</span> <span class="nf">POCS_algorithm</span><span class="p">(</span>
-<a id="__codelineno-0-373" name="__codelineno-0-373"></a>    <span class="n">x</span><span class="p">,</span>
-<a id="__codelineno-0-374" name="__codelineno-0-374"></a>    <span class="n">mask</span><span class="p">,</span>
-<a id="__codelineno-0-375" name="__codelineno-0-375"></a>    <span class="n">auxiliary_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-376" name="__codelineno-0-376"></a>    <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-377" name="__codelineno-0-377"></a>    <span class="n">itransform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-378" name="__codelineno-0-378"></a>    <span class="n">transform_kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-379" name="__codelineno-0-379"></a>    <span class="n">niter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
-<a id="__codelineno-0-380" name="__codelineno-0-380"></a>    <span class="n">thresh_op</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;hard&#39;</span><span class="p">,</span>
-<a id="__codelineno-0-381" name="__codelineno-0-381"></a>    <span class="n">thresh_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;exponential&#39;</span><span class="p">,</span>
-<a id="__codelineno-0-382" name="__codelineno-0-382"></a>    <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-9</span><span class="p">,</span>
-<a id="__codelineno-0-383" name="__codelineno-0-383"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-<a id="__codelineno-0-384" name="__codelineno-0-384"></a>    <span class="n">p_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span>
-<a id="__codelineno-0-385" name="__codelineno-0-385"></a>    <span class="n">p_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
-<a id="__codelineno-0-386" name="__codelineno-0-386"></a>    <span class="n">sqrt_decay</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-0-387" name="__codelineno-0-387"></a>    <span class="n">decay_kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;values&#39;</span><span class="p">,</span>
-<a id="__codelineno-0-388" name="__codelineno-0-388"></a>    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-0-389" name="__codelineno-0-389"></a>    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;regular&#39;</span><span class="p">,</span>
-<a id="__codelineno-0-390" name="__codelineno-0-390"></a>    <span class="n">results_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-391" name="__codelineno-0-391"></a>    <span class="n">path_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-392" name="__codelineno-0-392"></a><span class="p">):</span>
-<a id="__codelineno-0-393" name="__codelineno-0-393"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-394" name="__codelineno-0-394"></a><span class="sd">    Interpolate sparse input grid using Point Onto Convex Sets (POCS) algorithm.</span>
-<a id="__codelineno-0-395" name="__codelineno-0-395"></a><span class="sd">    Applying a user-specified **transform** method:</span>
-<a id="__codelineno-0-396" name="__codelineno-0-396"></a>
-<a id="__codelineno-0-397" name="__codelineno-0-397"></a><span class="sd">      - `FFT`</span>
-<a id="__codelineno-0-398" name="__codelineno-0-398"></a><span class="sd">      - `Wavelet`</span>
-<a id="__codelineno-0-399" name="__codelineno-0-399"></a><span class="sd">      - `Shearlet`</span>
-<a id="__codelineno-0-400" name="__codelineno-0-400"></a><span class="sd">      - `Curvelet`</span>
-<a id="__codelineno-0-401" name="__codelineno-0-401"></a>
-<a id="__codelineno-0-402" name="__codelineno-0-402"></a><span class="sd">    Parameters</span>
-<a id="__codelineno-0-403" name="__codelineno-0-403"></a><span class="sd">    ----------</span>
-<a id="__codelineno-0-404" name="__codelineno-0-404"></a><span class="sd">    x : np.ndarray</span>
-<a id="__codelineno-0-405" name="__codelineno-0-405"></a><span class="sd">        Sparse input data (2D).</span>
-<a id="__codelineno-0-406" name="__codelineno-0-406"></a><span class="sd">    mask : np.ndarray</span>
-<a id="__codelineno-0-407" name="__codelineno-0-407"></a><span class="sd">        Boolean mask of input data (`1`: data cell, `0`: nodata cell).</span>
-<a id="__codelineno-0-408" name="__codelineno-0-408"></a><span class="sd">    auxiliary_data: np.ndarray</span>
-<a id="__codelineno-0-409" name="__codelineno-0-409"></a><span class="sd">        Auxiliary data only required by `shearlet` transform.</span>
-<a id="__codelineno-0-410" name="__codelineno-0-410"></a><span class="sd">    transform : callable</span>
-<a id="__codelineno-0-411" name="__codelineno-0-411"></a><span class="sd">        Forward transform to apply.</span>
-<a id="__codelineno-0-412" name="__codelineno-0-412"></a><span class="sd">    itransform : callable</span>
-<a id="__codelineno-0-413" name="__codelineno-0-413"></a><span class="sd">        Inverse transform to apply.</span>
-<a id="__codelineno-0-414" name="__codelineno-0-414"></a><span class="sd">    transform_kind : str</span>
-<a id="__codelineno-0-415" name="__codelineno-0-415"></a><span class="sd">        Name of the specified transform.</span>
-<a id="__codelineno-0-416" name="__codelineno-0-416"></a><span class="sd">    niter : int, optional</span>
-<a id="__codelineno-0-417" name="__codelineno-0-417"></a><span class="sd">        Maximum number of iterations (default: `50`).</span>
-<a id="__codelineno-0-418" name="__codelineno-0-418"></a><span class="sd">    thresh_op : str, optional</span>
-<a id="__codelineno-0-419" name="__codelineno-0-419"></a><span class="sd">        Threshold operator (default: `soft`).</span>
-<a id="__codelineno-0-420" name="__codelineno-0-420"></a><span class="sd">    thresh_model : str, optional</span>
-<a id="__codelineno-0-421" name="__codelineno-0-421"></a><span class="sd">        Thresholding decay function.</span>
-<a id="__codelineno-0-422" name="__codelineno-0-422"></a>
-<a id="__codelineno-0-423" name="__codelineno-0-423"></a><span class="sd">            - `linear`                   Gao et al. (2010)</span>
-<a id="__codelineno-0-424" name="__codelineno-0-424"></a><span class="sd">            - `exponential`              Yang et al. (2012), Zhang et al. (2015), Zhao et al. (2021)</span>
-<a id="__codelineno-0-425" name="__codelineno-0-425"></a><span class="sd">            - `data-driven`              Gao et al. (2013)</span>
-<a id="__codelineno-0-426" name="__codelineno-0-426"></a><span class="sd">            - `inverse_proportional`     Ge et al. (2015)</span>
-<a id="__codelineno-0-427" name="__codelineno-0-427"></a><span class="sd">    eps : float, optional</span>
-<a id="__codelineno-0-428" name="__codelineno-0-428"></a><span class="sd">        Covergence threshold (default: `1e-9`).</span>
-<a id="__codelineno-0-429" name="__codelineno-0-429"></a><span class="sd">    alpha : float, optional</span>
-<a id="__codelineno-0-430" name="__codelineno-0-430"></a><span class="sd">        Weighting factor to scale re-insertion of input data (default: `1.0`).</span>
-<a id="__codelineno-0-431" name="__codelineno-0-431"></a><span class="sd">    sqrt_decay : bool, optional</span>
-<a id="__codelineno-0-432" name="__codelineno-0-432"></a><span class="sd">        Use squared decay values for thresholding (default: `False`).</span>
-<a id="__codelineno-0-433" name="__codelineno-0-433"></a><span class="sd">    decay_kind : str, optional</span>
-<a id="__codelineno-0-434" name="__codelineno-0-434"></a><span class="sd">        Return either data &quot;values&quot; or multiplication &quot;factors&quot;.</span>
-<a id="__codelineno-0-435" name="__codelineno-0-435"></a><span class="sd">    verbose : bool, optional</span>
-<a id="__codelineno-0-436" name="__codelineno-0-436"></a><span class="sd">        Print information about iteration steps (default: `False`).</span>
-<a id="__codelineno-0-437" name="__codelineno-0-437"></a><span class="sd">    version : str, optional</span>
-<a id="__codelineno-0-438" name="__codelineno-0-438"></a><span class="sd">        Version of POCS algorithm. One of the following:</span>
-<a id="__codelineno-0-439" name="__codelineno-0-439"></a>
-<a id="__codelineno-0-440" name="__codelineno-0-440"></a><span class="sd">            - `regular`     Abma and Kabir (2006), Yang et al. (2012)</span>
-<a id="__codelineno-0-441" name="__codelineno-0-441"></a><span class="sd">            - `fast`        Yang et al. (2013), Gan et al (2015)</span>
-<a id="__codelineno-0-442" name="__codelineno-0-442"></a><span class="sd">            - `adaptive`    Wang et al. (2015, 2016)</span>
-<a id="__codelineno-0-443" name="__codelineno-0-443"></a><span class="sd">    results_dict : dict, optional</span>
-<a id="__codelineno-0-444" name="__codelineno-0-444"></a><span class="sd">        If provided: return dict with total iterations, runtime (in seconds) and cost function.</span>
-<a id="__codelineno-0-445" name="__codelineno-0-445"></a>
-<a id="__codelineno-0-446" name="__codelineno-0-446"></a><span class="sd">    Returns</span>
-<a id="__codelineno-0-447" name="__codelineno-0-447"></a><span class="sd">    -------</span>
-<a id="__codelineno-0-448" name="__codelineno-0-448"></a><span class="sd">    x_inv : np.ndarray</span>
-<a id="__codelineno-0-449" name="__codelineno-0-449"></a><span class="sd">        Reconstructed (i.e. interpolated) input data.</span>
-<a id="__codelineno-0-450" name="__codelineno-0-450"></a>
-<a id="__codelineno-0-451" name="__codelineno-0-451"></a><span class="sd">    References</span>
-<a id="__codelineno-0-452" name="__codelineno-0-452"></a><span class="sd">    ----------</span>
-<a id="__codelineno-0-453" name="__codelineno-0-453"></a><span class="sd">    [^1]: Gao, J.-J., Chen, X.-H., Li, J.-Y., Liu, G.-C., &amp; Ma, J. (2010).</span>
-<a id="__codelineno-0-454" name="__codelineno-0-454"></a><span class="sd">        Irregular seismic data reconstruction based on exponential threshold model of POCS method.</span>
-<a id="__codelineno-0-455" name="__codelineno-0-455"></a><span class="sd">        Applied Geophysics, 7(3), 229–238. [https://doi.org/10.1007/s11770-010-0246-5](https://doi.org/10.1007/s11770-010-0246-5)</span>
-<a id="__codelineno-0-456" name="__codelineno-0-456"></a><span class="sd">    [^2]: Yang, P., Gao, J., &amp; Chen, W. (2012).</span>
-<a id="__codelineno-0-457" name="__codelineno-0-457"></a><span class="sd">        Curvelet-based POCS interpolation of nonuniformly sampled seismic records.</span>
-<a id="__codelineno-0-458" name="__codelineno-0-458"></a><span class="sd">        Journal of Applied Geophysics, 79, 90–99. [https://doi.org/10.1016/j.jappgeo.2011.12.004](https://doi.org/10.1016/j.jappgeo.2011.12.004)</span>
-<a id="__codelineno-0-459" name="__codelineno-0-459"></a><span class="sd">    [^3]: Zhang, H., Chen, X., &amp; Li, H. (2015).</span>
-<a id="__codelineno-0-460" name="__codelineno-0-460"></a><span class="sd">        3D seismic data reconstruction based on complex-valued curvelet transform in frequency domain.</span>
-<a id="__codelineno-0-461" name="__codelineno-0-461"></a><span class="sd">        Journal of Applied Geophysics, 113, 64–73. [https://doi.org/10.1016/j.jappgeo.2014.12.004](https://doi.org/10.1016/j.jappgeo.2014.12.004)</span>
-<a id="__codelineno-0-462" name="__codelineno-0-462"></a><span class="sd">    [^4]: Zhao, H., Yang, T., Ni, Y.-D., Liu, X.-G., Xu, Y.-P., Zhang, Y.-L., &amp; Zhang, G.-R. (2021).</span>
-<a id="__codelineno-0-463" name="__codelineno-0-463"></a><span class="sd">        Reconstruction method of irregular seismic data with adaptive thresholds based on different sparse transform bases.</span>
-<a id="__codelineno-0-464" name="__codelineno-0-464"></a><span class="sd">        Applied Geophysics, 18(3), 345–360. [https://doi.org/10.1007/s11770-021-0903-5](https://doi.org/10.1007/s11770-021-0903-5)</span>
-<a id="__codelineno-0-465" name="__codelineno-0-465"></a><span class="sd">    [^5]: Gao, J., Stanton, A., Naghizadeh, M., Sacchi, M. D., &amp; Chen, X. (2013).</span>
-<a id="__codelineno-0-466" name="__codelineno-0-466"></a><span class="sd">        Convergence improvement and noise attenuation considerations for beyond alias projection onto convex sets reconstruction.</span>
-<a id="__codelineno-0-467" name="__codelineno-0-467"></a><span class="sd">        Geophysical Prospecting, 61, 138–151. [https://doi.org/10.1111/j.1365-2478.2012.01103.x](https://doi.org/10.1111/j.1365-2478.2012.01103.x)</span>
-<a id="__codelineno-0-468" name="__codelineno-0-468"></a><span class="sd">    [^6]: Ge, Z.-J., Li, J.-Y., Pan, S.-L., &amp; Chen, X.-H. (2015).</span>
-<a id="__codelineno-0-469" name="__codelineno-0-469"></a><span class="sd">        A fast-convergence POCS seismic denoising and reconstruction method.</span>
-<a id="__codelineno-0-470" name="__codelineno-0-470"></a><span class="sd">        Applied Geophysics, 12(2), 169–178. [https://doi.org/10.1007/s11770-015-0485-1](https://doi.org/10.1007/s11770-015-0485-1)</span>
-<a id="__codelineno-0-471" name="__codelineno-0-471"></a><span class="sd">    [^7]: Abma, R., &amp; Kabir, N. (2006). 3D interpolation of irregular data with a POCS algorithm.</span>
-<a id="__codelineno-0-472" name="__codelineno-0-472"></a><span class="sd">        Geophysics, 71(6), E91–E97. [https://doi.org/10.1190/1.2356088](https://doi.org/10.1190/1.2356088)</span>
-<a id="__codelineno-0-473" name="__codelineno-0-473"></a><span class="sd">    [^8]: Yang, P., Gao, J., &amp; Chen, W. (2013)</span>
-<a id="__codelineno-0-474" name="__codelineno-0-474"></a><span class="sd">        On analysis-based two-step interpolation methods for randomly sampled seismic data.</span>
-<a id="__codelineno-0-475" name="__codelineno-0-475"></a><span class="sd">        Computers &amp; Geosciences, 51, 449–461. [https://doi.org/10.1016/j.cageo.2012.07.023](https://doi.org/10.1016/j.cageo.2012.07.023)</span>
-<a id="__codelineno-0-476" name="__codelineno-0-476"></a><span class="sd">    [^9]: Gan, S., Wang, S., Chen, Y., Zhang, Y., &amp; Jin, Z. (2015).</span>
-<a id="__codelineno-0-477" name="__codelineno-0-477"></a><span class="sd">        Dealiased Seismic Data Interpolation Using Seislet Transform With Low-Frequency Constraint.</span>
-<a id="__codelineno-0-478" name="__codelineno-0-478"></a><span class="sd">        IEEE Geoscience and Remote Sensing Letters, 12(10), 2150–2154. [https://doi.org/10.1109/LGRS.2015.2453119](https://doi.org/10.1109/LGRS.2015.2453119)</span>
-<a id="__codelineno-0-479" name="__codelineno-0-479"></a><span class="sd">    [^10]:  Wang, B., Wu, R.-S., Chen, X., &amp; Li, J. (2015).</span>
-<a id="__codelineno-0-480" name="__codelineno-0-480"></a><span class="sd">        Simultaneous seismic data interpolation and denoising with a new adaptive method based on dreamlet transform.</span>
-<a id="__codelineno-0-481" name="__codelineno-0-481"></a><span class="sd">        Geophysical Journal International, 201(2), 1182–1194. [https://doi.org/10.1093/gji/ggv072](https://doi.org/10.1093/gji/ggv072)</span>
-<a id="__codelineno-0-482" name="__codelineno-0-482"></a><span class="sd">    [^11]: Wang, B., Chen, X., Li, J., &amp; Cao, J. (2016).</span>
-<a id="__codelineno-0-483" name="__codelineno-0-483"></a><span class="sd">        An Improved Weighted Projection Onto Convex Sets Method for Seismic Data Interpolation and Denoising.</span>
-<a id="__codelineno-0-484" name="__codelineno-0-484"></a><span class="sd">        IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 9(1), 228–235.</span>
-<a id="__codelineno-0-485" name="__codelineno-0-485"></a><span class="sd">        [https://doi.org/10.1109/jstars.2015.2496374](https://doi.org/10.1109/jstars.2015.2496374)</span>
-<a id="__codelineno-0-486" name="__codelineno-0-486"></a>
-<a id="__codelineno-0-487" name="__codelineno-0-487"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-488" name="__codelineno-0-488"></a>    <span class="c1"># sanity checks</span>
-<a id="__codelineno-0-489" name="__codelineno-0-489"></a>    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<a id="__codelineno-0-490" name="__codelineno-0-490"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mask should be quasi-boolean (0 or 1) but has maximum of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-491" name="__codelineno-0-491"></a>
-<a id="__codelineno-0-492" name="__codelineno-0-492"></a>    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">transform</span><span class="p">,</span> <span class="n">itransform</span><span class="p">]):</span>
-<a id="__codelineno-0-493" name="__codelineno-0-493"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Forward and inverse transform function have to be supplied&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-494" name="__codelineno-0-494"></a>
-<a id="__codelineno-0-495" name="__codelineno-0-495"></a>    <span class="n">TRANSFORMS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">,</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">,</span> <span class="s1">&#39;CURVELET&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-496" name="__codelineno-0-496"></a>    <span class="k">if</span> <span class="n">transform_kind</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TRANSFORMS</span><span class="p">:</span>
-<a id="__codelineno-0-497" name="__codelineno-0-497"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unsupported transform. Please select one of: </span><span class="si">{</span><span class="n">TRANSFORMS</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-498" name="__codelineno-0-498"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-499" name="__codelineno-0-499"></a>        <span class="n">transform_kind</span> <span class="o">=</span> <span class="n">transform_kind</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-<a id="__codelineno-0-500" name="__codelineno-0-500"></a>
-<a id="__codelineno-0-501" name="__codelineno-0-501"></a>    <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span> <span class="ow">and</span> <span class="n">auxiliary_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-502" name="__codelineno-0-502"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<a id="__codelineno-0-503" name="__codelineno-0-503"></a>            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">transform_kind</span><span class="si">}</span><span class="s1"> requires pre-computed shearlets in Fourier domain (Psi)&#39;</span>
-<a id="__codelineno-0-504" name="__codelineno-0-504"></a>        <span class="p">)</span>
-<a id="__codelineno-0-505" name="__codelineno-0-505"></a>
-<a id="__codelineno-0-506" name="__codelineno-0-506"></a>    <span class="n">niter</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">niter</span><span class="p">)</span>
-<a id="__codelineno-0-507" name="__codelineno-0-507"></a>    <span class="n">eps</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
-<a id="__codelineno-0-508" name="__codelineno-0-508"></a>    <span class="n">p_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">p_max</span><span class="p">)</span>
-<a id="__codelineno-0-509" name="__codelineno-0-509"></a>    <span class="n">alpha</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
-<a id="__codelineno-0-510" name="__codelineno-0-510"></a>
-<a id="__codelineno-0-511" name="__codelineno-0-511"></a>    <span class="c1"># get input paramter</span>
-<a id="__codelineno-0-512" name="__codelineno-0-512"></a>    <span class="n">is_complex_input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<a id="__codelineno-0-513" name="__codelineno-0-513"></a>    <span class="n">shape</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
-<a id="__codelineno-0-514" name="__codelineno-0-514"></a>    <span class="n">original_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">)</span>
-<a id="__codelineno-0-515" name="__codelineno-0-515"></a>
-<a id="__codelineno-0-516" name="__codelineno-0-516"></a>    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<a id="__codelineno-0-517" name="__codelineno-0-517"></a>        <span class="n">niterations</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-0-518" name="__codelineno-0-518"></a>        <span class="n">runtime</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-0-519" name="__codelineno-0-519"></a>        <span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-0-520" name="__codelineno-0-520"></a>        <span class="n">costs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-0-521" name="__codelineno-0-521"></a>
-<a id="__codelineno-0-522" name="__codelineno-0-522"></a>        <span class="n">x_inv</span> <span class="o">=</span> <span class="n">x</span>
-<a id="__codelineno-0-523" name="__codelineno-0-523"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-524" name="__codelineno-0-524"></a>        <span class="c1"># initial forward transform</span>
-<a id="__codelineno-0-525" name="__codelineno-0-525"></a>        <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>  <span class="c1"># and isinstance(x_fwd, list):</span>
-<a id="__codelineno-0-526" name="__codelineno-0-526"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># exclude low-pass filter</span>
-<a id="__codelineno-0-527" name="__codelineno-0-527"></a>        <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>  <span class="c1"># and isinstance(x_fwd, tuple):</span>
-<a id="__codelineno-0-528" name="__codelineno-0-528"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">auxiliary_data</span><span class="p">)</span>  <span class="c1"># [0]   # output is like (ST, Psi)</span>
-<a id="__codelineno-0-529" name="__codelineno-0-529"></a>        <span class="k">elif</span> <span class="p">(</span>
-<a id="__codelineno-0-530" name="__codelineno-0-530"></a>            <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;CURVELET&#39;</span>
-<a id="__codelineno-0-531" name="__codelineno-0-531"></a>            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-532" name="__codelineno-0-532"></a>            <span class="ow">and</span> <span class="n">transform</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;matvec&#39;</span>
-<a id="__codelineno-0-533" name="__codelineno-0-533"></a>        <span class="p">):</span>
-<a id="__codelineno-0-534" name="__codelineno-0-534"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
-<a id="__codelineno-0-535" name="__codelineno-0-535"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-536" name="__codelineno-0-536"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<a id="__codelineno-0-537" name="__codelineno-0-537"></a>
-<a id="__codelineno-0-538" name="__codelineno-0-538"></a>        <span class="c1"># get threshold decay array</span>
-<a id="__codelineno-0-539" name="__codelineno-0-539"></a>        <span class="n">decay</span> <span class="o">=</span> <span class="n">get_threshold_decay</span><span class="p">(</span>
-<a id="__codelineno-0-540" name="__codelineno-0-540"></a>            <span class="n">thresh_model</span><span class="o">=</span><span class="n">thresh_model</span><span class="p">,</span>
-<a id="__codelineno-0-541" name="__codelineno-0-541"></a>            <span class="n">niter</span><span class="o">=</span><span class="n">niter</span><span class="p">,</span>
-<a id="__codelineno-0-542" name="__codelineno-0-542"></a>            <span class="n">transform_kind</span><span class="o">=</span><span class="n">transform_kind</span><span class="p">,</span>
-<a id="__codelineno-0-543" name="__codelineno-0-543"></a>            <span class="n">p_max</span><span class="o">=</span><span class="n">p_max</span><span class="p">,</span>
-<a id="__codelineno-0-544" name="__codelineno-0-544"></a>            <span class="n">p_min</span><span class="o">=</span><span class="n">p_min</span><span class="p">,</span>
-<a id="__codelineno-0-545" name="__codelineno-0-545"></a>            <span class="n">x_fwd</span><span class="o">=</span><span class="n">x_fwd</span><span class="p">,</span>
-<a id="__codelineno-0-546" name="__codelineno-0-546"></a>            <span class="n">kind</span><span class="o">=</span><span class="n">decay_kind</span><span class="p">,</span>
-<a id="__codelineno-0-547" name="__codelineno-0-547"></a>        <span class="p">)</span>
-<a id="__codelineno-0-548" name="__codelineno-0-548"></a>
-<a id="__codelineno-0-549" name="__codelineno-0-549"></a>        <span class="c1"># init data variables</span>
-<a id="__codelineno-0-550" name="__codelineno-0-550"></a>        <span class="n">x_old</span> <span class="o">=</span> <span class="n">x</span>
-<a id="__codelineno-0-551" name="__codelineno-0-551"></a>        <span class="n">x_inv</span> <span class="o">=</span> <span class="n">x</span>
-<a id="__codelineno-0-552" name="__codelineno-0-552"></a>
-<a id="__codelineno-0-553" name="__codelineno-0-553"></a>        <span class="c1"># init variable for improved convergence (Yang et al., 2013)</span>
-<a id="__codelineno-0-554" name="__codelineno-0-554"></a>        <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;fast&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-555" name="__codelineno-0-555"></a>            <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
-<a id="__codelineno-0-556" name="__codelineno-0-556"></a>
-<a id="__codelineno-0-557" name="__codelineno-0-557"></a>        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<a id="__codelineno-0-558" name="__codelineno-0-558"></a>        <span class="k">if</span> <span class="n">path_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-559" name="__codelineno-0-559"></a>            <span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-560" name="__codelineno-0-560"></a>
-<a id="__codelineno-0-561" name="__codelineno-0-561"></a>        <span class="k">for</span> <span class="n">iiter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="p">):</span>
-<a id="__codelineno-0-562" name="__codelineno-0-562"></a>            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-<a id="__codelineno-0-563" name="__codelineno-0-563"></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[Iteration: &lt;</span><span class="si">{</span><span class="n">iiter</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s1">3d</span><span class="si">}</span><span class="s1">&gt;]&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-564" name="__codelineno-0-564"></a>
-<a id="__codelineno-0-565" name="__codelineno-0-565"></a>            <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;regular&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-566" name="__codelineno-0-566"></a>                <span class="n">x_input</span> <span class="o">=</span> <span class="n">x_old</span>
-<a id="__codelineno-0-567" name="__codelineno-0-567"></a>            <span class="k">elif</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;fast&#39;</span><span class="p">:</span>  <span class="c1"># Yang et al. (2013)</span>
-<a id="__codelineno-0-568" name="__codelineno-0-568"></a>                <span class="c1"># improved convergence</span>
-<a id="__codelineno-0-569" name="__codelineno-0-569"></a>                <span class="n">v1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
-<a id="__codelineno-0-570" name="__codelineno-0-570"></a>                <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Gan et al. (2015)</span>
-<a id="__codelineno-0-571" name="__codelineno-0-571"></a>                <span class="n">v</span> <span class="o">=</span> <span class="n">v1</span>
-<a id="__codelineno-0-572" name="__codelineno-0-572"></a>                <span class="n">x_input</span> <span class="o">=</span> <span class="n">x_inv</span> <span class="o">+</span> <span class="n">frac</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_inv</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span>  <span class="c1"># prediction</span>
-<a id="__codelineno-0-573" name="__codelineno-0-573"></a>            <span class="k">elif</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;adaptive&#39;</span><span class="p">:</span>  <span class="c1"># Wang et al. (2015, 2016)</span>
-<a id="__codelineno-0-574" name="__codelineno-0-574"></a>                <span class="c1"># init adaptive input data</span>
-<a id="__codelineno-0-575" name="__codelineno-0-575"></a>                <span class="n">x_tmp</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">mask</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_old</span>
-<a id="__codelineno-0-576" name="__codelineno-0-576"></a>                <span class="n">x_input</span> <span class="o">=</span> <span class="n">x_tmp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mask</span> <span class="o">*</span> <span class="n">x_old</span><span class="p">)</span>
-<a id="__codelineno-0-577" name="__codelineno-0-577"></a>                <span class="c1"># x_input = x_inv + (1 - alpha) * (x - mask * x_old)</span>
-<a id="__codelineno-0-578" name="__codelineno-0-578"></a>
-<a id="__codelineno-0-579" name="__codelineno-0-579"></a>            <span class="c1"># (1) forward transform</span>
-<a id="__codelineno-0-580" name="__codelineno-0-580"></a>            <span class="k">if</span> <span class="p">(</span>
-<a id="__codelineno-0-581" name="__codelineno-0-581"></a>                <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;CURVELET&#39;</span>
-<a id="__codelineno-0-582" name="__codelineno-0-582"></a>                <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-583" name="__codelineno-0-583"></a>                <span class="ow">and</span> <span class="n">transform</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;matvec&#39;</span>
-<a id="__codelineno-0-584" name="__codelineno-0-584"></a>            <span class="p">):</span>
-<a id="__codelineno-0-585" name="__codelineno-0-585"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
-<a id="__codelineno-0-586" name="__codelineno-0-586"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-587" name="__codelineno-0-587"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="p">)</span>
-<a id="__codelineno-0-588" name="__codelineno-0-588"></a>                <span class="n">lowpass</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<a id="__codelineno-0-589" name="__codelineno-0-589"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-<a id="__codelineno-0-590" name="__codelineno-0-590"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-591" name="__codelineno-0-591"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">auxiliary_data</span><span class="p">)</span>
-<a id="__codelineno-0-592" name="__codelineno-0-592"></a>            <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-593" name="__codelineno-0-593"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="p">)</span>
-<a id="__codelineno-0-594" name="__codelineno-0-594"></a>
-<a id="__codelineno-0-595" name="__codelineno-0-595"></a>            <span class="c1"># (2) thresholding</span>
-<a id="__codelineno-0-596" name="__codelineno-0-596"></a>            <span class="n">_decay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">decay</span><span class="p">[</span><span class="n">iiter</span><span class="p">])</span> <span class="k">if</span> <span class="n">sqrt_decay</span> <span class="k">else</span> <span class="n">decay</span><span class="p">[</span><span class="n">iiter</span><span class="p">]</span>
-<a id="__codelineno-0-597" name="__codelineno-0-597"></a>            <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-<a id="__codelineno-0-598" name="__codelineno-0-598"></a>                <span class="n">X_thresh</span> <span class="o">=</span> <span class="n">threshold_wavelet</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">_decay</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">thresh_op</span><span class="p">)</span>
-<a id="__codelineno-0-599" name="__codelineno-0-599"></a>            <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-600" name="__codelineno-0-600"></a>                <span class="n">X_thresh</span> <span class="o">=</span> <span class="n">threshold</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">_decay</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">thresh_op</span><span class="p">)</span>
-<a id="__codelineno-0-601" name="__codelineno-0-601"></a>
-<a id="__codelineno-0-602" name="__codelineno-0-602"></a>            <span class="c1"># (3) inverse transform</span>
-<a id="__codelineno-0-603" name="__codelineno-0-603"></a>            <span class="k">if</span> <span class="p">(</span>
-<a id="__codelineno-0-604" name="__codelineno-0-604"></a>                <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;CURVELET&#39;</span>
-<a id="__codelineno-0-605" name="__codelineno-0-605"></a>                <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">itransform</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-606" name="__codelineno-0-606"></a>                <span class="ow">and</span> <span class="n">itransform</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;rmatvec&#39;</span>
-<a id="__codelineno-0-607" name="__codelineno-0-607"></a>            <span class="p">):</span>
-<a id="__codelineno-0-608" name="__codelineno-0-608"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">(</span><span class="n">X_thresh</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
-<a id="__codelineno-0-609" name="__codelineno-0-609"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-610" name="__codelineno-0-610"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">([</span><span class="n">lowpass</span><span class="p">]</span> <span class="o">+</span> <span class="n">X_thresh</span><span class="p">)[</span><span class="n">original_shape</span><span class="p">]</span>
-<a id="__codelineno-0-611" name="__codelineno-0-611"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-612" name="__codelineno-0-612"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">(</span><span class="n">X_thresh</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">auxiliary_data</span><span class="p">)</span>
-<a id="__codelineno-0-613" name="__codelineno-0-613"></a>            <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-614" name="__codelineno-0-614"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">(</span><span class="n">X_thresh</span><span class="p">)</span>
-<a id="__codelineno-0-615" name="__codelineno-0-615"></a>
-<a id="__codelineno-0-616" name="__codelineno-0-616"></a>            <span class="c1"># (4) apply mask (scaled by weighting factor)</span>
-<a id="__codelineno-0-617" name="__codelineno-0-617"></a>            <span class="n">x_inv</span> <span class="o">*=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">mask</span>
-<a id="__codelineno-0-618" name="__codelineno-0-618"></a>
-<a id="__codelineno-0-619" name="__codelineno-0-619"></a>            <span class="c1"># (5) add original data (scaled by weighting factor)</span>
-<a id="__codelineno-0-620" name="__codelineno-0-620"></a>            <span class="n">x_inv</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">alpha</span>
-<a id="__codelineno-0-621" name="__codelineno-0-621"></a>
-<a id="__codelineno-0-622" name="__codelineno-0-622"></a>            <span class="c1"># cost function from Gao et al. (2013)</span>
-<a id="__codelineno-0-623" name="__codelineno-0-623"></a>            <span class="n">cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_inv</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_old</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_inv</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
-<a id="__codelineno-0-624" name="__codelineno-0-624"></a>            <span class="k">if</span> <span class="n">path_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-625" name="__codelineno-0-625"></a>                <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
-<a id="__codelineno-0-626" name="__codelineno-0-626"></a>            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-<a id="__codelineno-0-627" name="__codelineno-0-627"></a>                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[INFO]   cost:&#39;</span><span class="p">,</span> <span class="n">cost</span><span class="p">)</span>
-<a id="__codelineno-0-628" name="__codelineno-0-628"></a>
-<a id="__codelineno-0-629" name="__codelineno-0-629"></a>            <span class="c1"># set result from previous iteration as new input</span>
-<a id="__codelineno-0-630" name="__codelineno-0-630"></a>            <span class="n">x_old</span> <span class="o">=</span> <span class="n">x_inv</span>
-<a id="__codelineno-0-631" name="__codelineno-0-631"></a>
-<a id="__codelineno-0-632" name="__codelineno-0-632"></a>            <span class="k">if</span> <span class="n">iiter</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
-<a id="__codelineno-0-633" name="__codelineno-0-633"></a>                <span class="k">break</span>
-<a id="__codelineno-0-634" name="__codelineno-0-634"></a>
-<a id="__codelineno-0-635" name="__codelineno-0-635"></a>        <span class="n">niterations</span> <span class="o">=</span> <span class="n">iiter</span> <span class="o">+</span> <span class="mi">1</span>
-<a id="__codelineno-0-636" name="__codelineno-0-636"></a>        <span class="n">runtime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
-<a id="__codelineno-0-637" name="__codelineno-0-637"></a>
-<a id="__codelineno-0-638" name="__codelineno-0-638"></a>    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-<a id="__codelineno-0-639" name="__codelineno-0-639"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
-<a id="__codelineno-0-640" name="__codelineno-0-640"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;# iterations:  </span><span class="si">{</span><span class="n">niterations</span><span class="si">:</span><span class="s1">4d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-641" name="__codelineno-0-641"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cost function: </span><span class="si">{</span><span class="n">cost</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-642" name="__codelineno-0-642"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;runtime:       </span><span class="si">{</span><span class="n">runtime</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-643" name="__codelineno-0-643"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
-<a id="__codelineno-0-644" name="__codelineno-0-644"></a>
-<a id="__codelineno-0-645" name="__codelineno-0-645"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">results_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-<a id="__codelineno-0-646" name="__codelineno-0-646"></a>        <span class="n">results_dict</span><span class="p">[</span><span class="s1">&#39;niterations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">niterations</span>
-<a id="__codelineno-0-647" name="__codelineno-0-647"></a>        <span class="n">results_dict</span><span class="p">[</span><span class="s1">&#39;runtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">runtime</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<a id="__codelineno-0-648" name="__codelineno-0-648"></a>        <span class="n">results_dict</span><span class="p">[</span><span class="s1">&#39;cost&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost</span>
-<a id="__codelineno-0-649" name="__codelineno-0-649"></a>
-<a id="__codelineno-0-650" name="__codelineno-0-650"></a>    <span class="k">if</span> <span class="n">path_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-651" name="__codelineno-0-651"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_results</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-0-652" name="__codelineno-0-652"></a>            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">niterations</span><span class="p">,</span> <span class="n">runtime</span><span class="p">]</span> <span class="o">+</span> <span class="n">costs</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-653" name="__codelineno-0-653"></a>
-<a id="__codelineno-0-654" name="__codelineno-0-654"></a>    <span class="k">if</span> <span class="n">is_complex_input</span><span class="p">:</span>
-<a id="__codelineno-0-655" name="__codelineno-0-655"></a>        <span class="k">return</span> <span class="n">x_inv</span>
-<a id="__codelineno-0-656" name="__codelineno-0-656"></a>
-<a id="__codelineno-0-657" name="__codelineno-0-657"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">x_inv</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-656">656</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-371" name="__codelineno-0-371"></a><span class="k">def</span> <span class="nf">POCS_algorithm</span><span class="p">(</span>
+<a id="__codelineno-0-372" name="__codelineno-0-372"></a>    <span class="n">x</span><span class="p">,</span>
+<a id="__codelineno-0-373" name="__codelineno-0-373"></a>    <span class="n">mask</span><span class="p">,</span>
+<a id="__codelineno-0-374" name="__codelineno-0-374"></a>    <span class="n">auxiliary_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-375" name="__codelineno-0-375"></a>    <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-376" name="__codelineno-0-376"></a>    <span class="n">itransform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-377" name="__codelineno-0-377"></a>    <span class="n">transform_kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-378" name="__codelineno-0-378"></a>    <span class="n">niter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-0-379" name="__codelineno-0-379"></a>    <span class="n">thresh_op</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;hard&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-380" name="__codelineno-0-380"></a>    <span class="n">thresh_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;exponential&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-381" name="__codelineno-0-381"></a>    <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-9</span><span class="p">,</span>
+<a id="__codelineno-0-382" name="__codelineno-0-382"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<a id="__codelineno-0-383" name="__codelineno-0-383"></a>    <span class="n">p_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span>
+<a id="__codelineno-0-384" name="__codelineno-0-384"></a>    <span class="n">p_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+<a id="__codelineno-0-385" name="__codelineno-0-385"></a>    <span class="n">sqrt_decay</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-386" name="__codelineno-0-386"></a>    <span class="n">decay_kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;values&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-387" name="__codelineno-0-387"></a>    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-388" name="__codelineno-0-388"></a>    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;regular&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-389" name="__codelineno-0-389"></a>    <span class="n">results_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-390" name="__codelineno-0-390"></a>    <span class="n">path_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-391" name="__codelineno-0-391"></a><span class="p">):</span>
+<a id="__codelineno-0-392" name="__codelineno-0-392"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-393" name="__codelineno-0-393"></a><span class="sd">    Interpolate sparse input grid using Point Onto Convex Sets (POCS) algorithm.</span>
+<a id="__codelineno-0-394" name="__codelineno-0-394"></a><span class="sd">    Applying a user-specified **transform** method:</span>
+<a id="__codelineno-0-395" name="__codelineno-0-395"></a>
+<a id="__codelineno-0-396" name="__codelineno-0-396"></a><span class="sd">      - `FFT`</span>
+<a id="__codelineno-0-397" name="__codelineno-0-397"></a><span class="sd">      - `Wavelet`</span>
+<a id="__codelineno-0-398" name="__codelineno-0-398"></a><span class="sd">      - `Shearlet`</span>
+<a id="__codelineno-0-399" name="__codelineno-0-399"></a><span class="sd">      - `Curvelet`</span>
+<a id="__codelineno-0-400" name="__codelineno-0-400"></a>
+<a id="__codelineno-0-401" name="__codelineno-0-401"></a><span class="sd">    Parameters</span>
+<a id="__codelineno-0-402" name="__codelineno-0-402"></a><span class="sd">    ----------</span>
+<a id="__codelineno-0-403" name="__codelineno-0-403"></a><span class="sd">    x : np.ndarray</span>
+<a id="__codelineno-0-404" name="__codelineno-0-404"></a><span class="sd">        Sparse input data (2D).</span>
+<a id="__codelineno-0-405" name="__codelineno-0-405"></a><span class="sd">    mask : np.ndarray</span>
+<a id="__codelineno-0-406" name="__codelineno-0-406"></a><span class="sd">        Boolean mask of input data (`1`: data cell, `0`: nodata cell).</span>
+<a id="__codelineno-0-407" name="__codelineno-0-407"></a><span class="sd">    auxiliary_data: np.ndarray</span>
+<a id="__codelineno-0-408" name="__codelineno-0-408"></a><span class="sd">        Auxiliary data only required by `shearlet` transform.</span>
+<a id="__codelineno-0-409" name="__codelineno-0-409"></a><span class="sd">    transform : callable</span>
+<a id="__codelineno-0-410" name="__codelineno-0-410"></a><span class="sd">        Forward transform to apply.</span>
+<a id="__codelineno-0-411" name="__codelineno-0-411"></a><span class="sd">    itransform : callable</span>
+<a id="__codelineno-0-412" name="__codelineno-0-412"></a><span class="sd">        Inverse transform to apply.</span>
+<a id="__codelineno-0-413" name="__codelineno-0-413"></a><span class="sd">    transform_kind : str</span>
+<a id="__codelineno-0-414" name="__codelineno-0-414"></a><span class="sd">        Name of the specified transform.</span>
+<a id="__codelineno-0-415" name="__codelineno-0-415"></a><span class="sd">    niter : int, optional</span>
+<a id="__codelineno-0-416" name="__codelineno-0-416"></a><span class="sd">        Maximum number of iterations (default: `50`).</span>
+<a id="__codelineno-0-417" name="__codelineno-0-417"></a><span class="sd">    thresh_op : str, optional</span>
+<a id="__codelineno-0-418" name="__codelineno-0-418"></a><span class="sd">        Threshold operator (default: `soft`).</span>
+<a id="__codelineno-0-419" name="__codelineno-0-419"></a><span class="sd">    thresh_model : str, optional</span>
+<a id="__codelineno-0-420" name="__codelineno-0-420"></a><span class="sd">        Thresholding decay function.</span>
+<a id="__codelineno-0-421" name="__codelineno-0-421"></a>
+<a id="__codelineno-0-422" name="__codelineno-0-422"></a><span class="sd">            - `linear`                   Gao et al. (2010)</span>
+<a id="__codelineno-0-423" name="__codelineno-0-423"></a><span class="sd">            - `exponential`              Yang et al. (2012), Zhang et al. (2015), Zhao et al. (2021)</span>
+<a id="__codelineno-0-424" name="__codelineno-0-424"></a><span class="sd">            - `data-driven`              Gao et al. (2013)</span>
+<a id="__codelineno-0-425" name="__codelineno-0-425"></a><span class="sd">            - `inverse_proportional`     Ge et al. (2015)</span>
+<a id="__codelineno-0-426" name="__codelineno-0-426"></a><span class="sd">    eps : float, optional</span>
+<a id="__codelineno-0-427" name="__codelineno-0-427"></a><span class="sd">        Covergence threshold (default: `1e-9`).</span>
+<a id="__codelineno-0-428" name="__codelineno-0-428"></a><span class="sd">    alpha : float, optional</span>
+<a id="__codelineno-0-429" name="__codelineno-0-429"></a><span class="sd">        Weighting factor to scale re-insertion of input data (default: `1.0`).</span>
+<a id="__codelineno-0-430" name="__codelineno-0-430"></a><span class="sd">    sqrt_decay : bool, optional</span>
+<a id="__codelineno-0-431" name="__codelineno-0-431"></a><span class="sd">        Use squared decay values for thresholding (default: `False`).</span>
+<a id="__codelineno-0-432" name="__codelineno-0-432"></a><span class="sd">    decay_kind : str, optional</span>
+<a id="__codelineno-0-433" name="__codelineno-0-433"></a><span class="sd">        Return either data &quot;values&quot; or multiplication &quot;factors&quot;.</span>
+<a id="__codelineno-0-434" name="__codelineno-0-434"></a><span class="sd">    verbose : bool, optional</span>
+<a id="__codelineno-0-435" name="__codelineno-0-435"></a><span class="sd">        Print information about iteration steps (default: `False`).</span>
+<a id="__codelineno-0-436" name="__codelineno-0-436"></a><span class="sd">    version : str, optional</span>
+<a id="__codelineno-0-437" name="__codelineno-0-437"></a><span class="sd">        Version of POCS algorithm. One of the following:</span>
+<a id="__codelineno-0-438" name="__codelineno-0-438"></a>
+<a id="__codelineno-0-439" name="__codelineno-0-439"></a><span class="sd">            - `regular`     Abma and Kabir (2006), Yang et al. (2012)</span>
+<a id="__codelineno-0-440" name="__codelineno-0-440"></a><span class="sd">            - `fast`        Yang et al. (2013), Gan et al (2015)</span>
+<a id="__codelineno-0-441" name="__codelineno-0-441"></a><span class="sd">            - `adaptive`    Wang et al. (2015, 2016)</span>
+<a id="__codelineno-0-442" name="__codelineno-0-442"></a><span class="sd">    results_dict : dict, optional</span>
+<a id="__codelineno-0-443" name="__codelineno-0-443"></a><span class="sd">        If provided: return dict with total iterations, runtime (in seconds) and cost function.</span>
+<a id="__codelineno-0-444" name="__codelineno-0-444"></a>
+<a id="__codelineno-0-445" name="__codelineno-0-445"></a><span class="sd">    Returns</span>
+<a id="__codelineno-0-446" name="__codelineno-0-446"></a><span class="sd">    -------</span>
+<a id="__codelineno-0-447" name="__codelineno-0-447"></a><span class="sd">    x_inv : np.ndarray</span>
+<a id="__codelineno-0-448" name="__codelineno-0-448"></a><span class="sd">        Reconstructed (i.e. interpolated) input data.</span>
+<a id="__codelineno-0-449" name="__codelineno-0-449"></a>
+<a id="__codelineno-0-450" name="__codelineno-0-450"></a><span class="sd">    References</span>
+<a id="__codelineno-0-451" name="__codelineno-0-451"></a><span class="sd">    ----------</span>
+<a id="__codelineno-0-452" name="__codelineno-0-452"></a><span class="sd">    [^1]: Gao, J.-J., Chen, X.-H., Li, J.-Y., Liu, G.-C., &amp; Ma, J. (2010).</span>
+<a id="__codelineno-0-453" name="__codelineno-0-453"></a><span class="sd">        Irregular seismic data reconstruction based on exponential threshold model of POCS method.</span>
+<a id="__codelineno-0-454" name="__codelineno-0-454"></a><span class="sd">        Applied Geophysics, 7(3), 229–238. [https://doi.org/10.1007/s11770-010-0246-5](https://doi.org/10.1007/s11770-010-0246-5)</span>
+<a id="__codelineno-0-455" name="__codelineno-0-455"></a><span class="sd">    [^2]: Yang, P., Gao, J., &amp; Chen, W. (2012).</span>
+<a id="__codelineno-0-456" name="__codelineno-0-456"></a><span class="sd">        Curvelet-based POCS interpolation of nonuniformly sampled seismic records.</span>
+<a id="__codelineno-0-457" name="__codelineno-0-457"></a><span class="sd">        Journal of Applied Geophysics, 79, 90–99. [https://doi.org/10.1016/j.jappgeo.2011.12.004](https://doi.org/10.1016/j.jappgeo.2011.12.004)</span>
+<a id="__codelineno-0-458" name="__codelineno-0-458"></a><span class="sd">    [^3]: Zhang, H., Chen, X., &amp; Li, H. (2015).</span>
+<a id="__codelineno-0-459" name="__codelineno-0-459"></a><span class="sd">        3D seismic data reconstruction based on complex-valued curvelet transform in frequency domain.</span>
+<a id="__codelineno-0-460" name="__codelineno-0-460"></a><span class="sd">        Journal of Applied Geophysics, 113, 64–73. [https://doi.org/10.1016/j.jappgeo.2014.12.004](https://doi.org/10.1016/j.jappgeo.2014.12.004)</span>
+<a id="__codelineno-0-461" name="__codelineno-0-461"></a><span class="sd">    [^4]: Zhao, H., Yang, T., Ni, Y.-D., Liu, X.-G., Xu, Y.-P., Zhang, Y.-L., &amp; Zhang, G.-R. (2021).</span>
+<a id="__codelineno-0-462" name="__codelineno-0-462"></a><span class="sd">        Reconstruction method of irregular seismic data with adaptive thresholds based on different sparse transform bases.</span>
+<a id="__codelineno-0-463" name="__codelineno-0-463"></a><span class="sd">        Applied Geophysics, 18(3), 345–360. [https://doi.org/10.1007/s11770-021-0903-5](https://doi.org/10.1007/s11770-021-0903-5)</span>
+<a id="__codelineno-0-464" name="__codelineno-0-464"></a><span class="sd">    [^5]: Gao, J., Stanton, A., Naghizadeh, M., Sacchi, M. D., &amp; Chen, X. (2013).</span>
+<a id="__codelineno-0-465" name="__codelineno-0-465"></a><span class="sd">        Convergence improvement and noise attenuation considerations for beyond alias projection onto convex sets reconstruction.</span>
+<a id="__codelineno-0-466" name="__codelineno-0-466"></a><span class="sd">        Geophysical Prospecting, 61, 138–151. [https://doi.org/10.1111/j.1365-2478.2012.01103.x](https://doi.org/10.1111/j.1365-2478.2012.01103.x)</span>
+<a id="__codelineno-0-467" name="__codelineno-0-467"></a><span class="sd">    [^6]: Ge, Z.-J., Li, J.-Y., Pan, S.-L., &amp; Chen, X.-H. (2015).</span>
+<a id="__codelineno-0-468" name="__codelineno-0-468"></a><span class="sd">        A fast-convergence POCS seismic denoising and reconstruction method.</span>
+<a id="__codelineno-0-469" name="__codelineno-0-469"></a><span class="sd">        Applied Geophysics, 12(2), 169–178. [https://doi.org/10.1007/s11770-015-0485-1](https://doi.org/10.1007/s11770-015-0485-1)</span>
+<a id="__codelineno-0-470" name="__codelineno-0-470"></a><span class="sd">    [^7]: Abma, R., &amp; Kabir, N. (2006). 3D interpolation of irregular data with a POCS algorithm.</span>
+<a id="__codelineno-0-471" name="__codelineno-0-471"></a><span class="sd">        Geophysics, 71(6), E91–E97. [https://doi.org/10.1190/1.2356088](https://doi.org/10.1190/1.2356088)</span>
+<a id="__codelineno-0-472" name="__codelineno-0-472"></a><span class="sd">    [^8]: Yang, P., Gao, J., &amp; Chen, W. (2013)</span>
+<a id="__codelineno-0-473" name="__codelineno-0-473"></a><span class="sd">        On analysis-based two-step interpolation methods for randomly sampled seismic data.</span>
+<a id="__codelineno-0-474" name="__codelineno-0-474"></a><span class="sd">        Computers &amp; Geosciences, 51, 449–461. [https://doi.org/10.1016/j.cageo.2012.07.023](https://doi.org/10.1016/j.cageo.2012.07.023)</span>
+<a id="__codelineno-0-475" name="__codelineno-0-475"></a><span class="sd">    [^9]: Gan, S., Wang, S., Chen, Y., Zhang, Y., &amp; Jin, Z. (2015).</span>
+<a id="__codelineno-0-476" name="__codelineno-0-476"></a><span class="sd">        Dealiased Seismic Data Interpolation Using Seislet Transform With Low-Frequency Constraint.</span>
+<a id="__codelineno-0-477" name="__codelineno-0-477"></a><span class="sd">        IEEE Geoscience and Remote Sensing Letters, 12(10), 2150–2154. [https://doi.org/10.1109/LGRS.2015.2453119](https://doi.org/10.1109/LGRS.2015.2453119)</span>
+<a id="__codelineno-0-478" name="__codelineno-0-478"></a><span class="sd">    [^10]:  Wang, B., Wu, R.-S., Chen, X., &amp; Li, J. (2015).</span>
+<a id="__codelineno-0-479" name="__codelineno-0-479"></a><span class="sd">        Simultaneous seismic data interpolation and denoising with a new adaptive method based on dreamlet transform.</span>
+<a id="__codelineno-0-480" name="__codelineno-0-480"></a><span class="sd">        Geophysical Journal International, 201(2), 1182–1194. [https://doi.org/10.1093/gji/ggv072](https://doi.org/10.1093/gji/ggv072)</span>
+<a id="__codelineno-0-481" name="__codelineno-0-481"></a><span class="sd">    [^11]: Wang, B., Chen, X., Li, J., &amp; Cao, J. (2016).</span>
+<a id="__codelineno-0-482" name="__codelineno-0-482"></a><span class="sd">        An Improved Weighted Projection Onto Convex Sets Method for Seismic Data Interpolation and Denoising.</span>
+<a id="__codelineno-0-483" name="__codelineno-0-483"></a><span class="sd">        IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 9(1), 228–235.</span>
+<a id="__codelineno-0-484" name="__codelineno-0-484"></a><span class="sd">        [https://doi.org/10.1109/jstars.2015.2496374](https://doi.org/10.1109/jstars.2015.2496374)</span>
+<a id="__codelineno-0-485" name="__codelineno-0-485"></a>
+<a id="__codelineno-0-486" name="__codelineno-0-486"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-487" name="__codelineno-0-487"></a>    <span class="c1"># sanity checks</span>
+<a id="__codelineno-0-488" name="__codelineno-0-488"></a>    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-489" name="__codelineno-0-489"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mask should be quasi-boolean (0 or 1) but has maximum of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-490" name="__codelineno-0-490"></a>
+<a id="__codelineno-0-491" name="__codelineno-0-491"></a>    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">transform</span><span class="p">,</span> <span class="n">itransform</span><span class="p">]):</span>
+<a id="__codelineno-0-492" name="__codelineno-0-492"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Forward and inverse transform function have to be supplied&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-493" name="__codelineno-0-493"></a>
+<a id="__codelineno-0-494" name="__codelineno-0-494"></a>    <span class="n">TRANSFORMS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">,</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">,</span> <span class="s1">&#39;CURVELET&#39;</span><span class="p">,</span> <span class="s1">&#39;DCT&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-495" name="__codelineno-0-495"></a>    <span class="k">if</span> <span class="n">transform_kind</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TRANSFORMS</span><span class="p">:</span>
+<a id="__codelineno-0-496" name="__codelineno-0-496"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unsupported transform. Please select one of: </span><span class="si">{</span><span class="n">TRANSFORMS</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-497" name="__codelineno-0-497"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-498" name="__codelineno-0-498"></a>        <span class="n">transform_kind</span> <span class="o">=</span> <span class="n">transform_kind</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<a id="__codelineno-0-499" name="__codelineno-0-499"></a>
+<a id="__codelineno-0-500" name="__codelineno-0-500"></a>    <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span> <span class="ow">and</span> <span class="n">auxiliary_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-501" name="__codelineno-0-501"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-502" name="__codelineno-0-502"></a>            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">transform_kind</span><span class="si">}</span><span class="s1"> requires pre-computed shearlets in Fourier domain (Psi)&#39;</span>
+<a id="__codelineno-0-503" name="__codelineno-0-503"></a>        <span class="p">)</span>
+<a id="__codelineno-0-504" name="__codelineno-0-504"></a>
+<a id="__codelineno-0-505" name="__codelineno-0-505"></a>    <span class="n">niter</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">niter</span><span class="p">)</span>
+<a id="__codelineno-0-506" name="__codelineno-0-506"></a>    <span class="n">eps</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+<a id="__codelineno-0-507" name="__codelineno-0-507"></a>    <span class="n">p_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">p_max</span><span class="p">)</span>
+<a id="__codelineno-0-508" name="__codelineno-0-508"></a>    <span class="n">alpha</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+<a id="__codelineno-0-509" name="__codelineno-0-509"></a>
+<a id="__codelineno-0-510" name="__codelineno-0-510"></a>    <span class="c1"># get input paramter</span>
+<a id="__codelineno-0-511" name="__codelineno-0-511"></a>    <span class="n">is_complex_input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-0-512" name="__codelineno-0-512"></a>    <span class="n">shape</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+<a id="__codelineno-0-513" name="__codelineno-0-513"></a>    <span class="n">original_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">)</span>
+<a id="__codelineno-0-514" name="__codelineno-0-514"></a>
+<a id="__codelineno-0-515" name="__codelineno-0-515"></a>    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-516" name="__codelineno-0-516"></a>        <span class="n">niterations</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-517" name="__codelineno-0-517"></a>        <span class="n">runtime</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-518" name="__codelineno-0-518"></a>        <span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-519" name="__codelineno-0-519"></a>        <span class="n">costs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-520" name="__codelineno-0-520"></a>
+<a id="__codelineno-0-521" name="__codelineno-0-521"></a>        <span class="n">x_inv</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-0-522" name="__codelineno-0-522"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-523" name="__codelineno-0-523"></a>        <span class="c1"># initial forward transform</span>
+<a id="__codelineno-0-524" name="__codelineno-0-524"></a>        <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>  <span class="c1"># and isinstance(x_fwd, list):</span>
+<a id="__codelineno-0-525" name="__codelineno-0-525"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># exclude low-pass filter</span>
+<a id="__codelineno-0-526" name="__codelineno-0-526"></a>        <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>  <span class="c1"># and isinstance(x_fwd, tuple):</span>
+<a id="__codelineno-0-527" name="__codelineno-0-527"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">auxiliary_data</span><span class="p">)</span>  <span class="c1"># [0]   # output is like (ST, Psi)</span>
+<a id="__codelineno-0-528" name="__codelineno-0-528"></a>        <span class="k">elif</span> <span class="p">(</span>
+<a id="__codelineno-0-529" name="__codelineno-0-529"></a>            <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;CURVELET&#39;</span>
+<a id="__codelineno-0-530" name="__codelineno-0-530"></a>            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-531" name="__codelineno-0-531"></a>            <span class="ow">and</span> <span class="n">transform</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;matvec&#39;</span>
+<a id="__codelineno-0-532" name="__codelineno-0-532"></a>        <span class="p">):</span>
+<a id="__codelineno-0-533" name="__codelineno-0-533"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<a id="__codelineno-0-534" name="__codelineno-0-534"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-535" name="__codelineno-0-535"></a>            <span class="n">x_fwd</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-0-536" name="__codelineno-0-536"></a>
+<a id="__codelineno-0-537" name="__codelineno-0-537"></a>        <span class="c1"># get threshold decay array</span>
+<a id="__codelineno-0-538" name="__codelineno-0-538"></a>        <span class="n">decay</span> <span class="o">=</span> <span class="n">get_threshold_decay</span><span class="p">(</span>
+<a id="__codelineno-0-539" name="__codelineno-0-539"></a>            <span class="n">thresh_model</span><span class="o">=</span><span class="n">thresh_model</span><span class="p">,</span>
+<a id="__codelineno-0-540" name="__codelineno-0-540"></a>            <span class="n">niter</span><span class="o">=</span><span class="n">niter</span><span class="p">,</span>
+<a id="__codelineno-0-541" name="__codelineno-0-541"></a>            <span class="n">transform_kind</span><span class="o">=</span><span class="n">transform_kind</span><span class="p">,</span>
+<a id="__codelineno-0-542" name="__codelineno-0-542"></a>            <span class="n">p_max</span><span class="o">=</span><span class="n">p_max</span><span class="p">,</span>
+<a id="__codelineno-0-543" name="__codelineno-0-543"></a>            <span class="n">p_min</span><span class="o">=</span><span class="n">p_min</span><span class="p">,</span>
+<a id="__codelineno-0-544" name="__codelineno-0-544"></a>            <span class="n">x_fwd</span><span class="o">=</span><span class="n">x_fwd</span><span class="p">,</span>
+<a id="__codelineno-0-545" name="__codelineno-0-545"></a>            <span class="n">kind</span><span class="o">=</span><span class="n">decay_kind</span><span class="p">,</span>
+<a id="__codelineno-0-546" name="__codelineno-0-546"></a>        <span class="p">)</span>
+<a id="__codelineno-0-547" name="__codelineno-0-547"></a>
+<a id="__codelineno-0-548" name="__codelineno-0-548"></a>        <span class="c1"># init data variables</span>
+<a id="__codelineno-0-549" name="__codelineno-0-549"></a>        <span class="n">x_old</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-0-550" name="__codelineno-0-550"></a>        <span class="n">x_inv</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-0-551" name="__codelineno-0-551"></a>
+<a id="__codelineno-0-552" name="__codelineno-0-552"></a>        <span class="c1"># init variable for improved convergence (Yang et al., 2013)</span>
+<a id="__codelineno-0-553" name="__codelineno-0-553"></a>        <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;fast&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-554" name="__codelineno-0-554"></a>            <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-555" name="__codelineno-0-555"></a>
+<a id="__codelineno-0-556" name="__codelineno-0-556"></a>        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<a id="__codelineno-0-557" name="__codelineno-0-557"></a>        <span class="k">if</span> <span class="n">path_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-558" name="__codelineno-0-558"></a>            <span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-559" name="__codelineno-0-559"></a>
+<a id="__codelineno-0-560" name="__codelineno-0-560"></a>        <span class="k">for</span> <span class="n">iiter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="p">):</span>
+<a id="__codelineno-0-561" name="__codelineno-0-561"></a>            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<a id="__codelineno-0-562" name="__codelineno-0-562"></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[Iteration: &lt;</span><span class="si">{</span><span class="n">iiter</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s1">3d</span><span class="si">}</span><span class="s1">&gt;]&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-563" name="__codelineno-0-563"></a>
+<a id="__codelineno-0-564" name="__codelineno-0-564"></a>            <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;regular&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-565" name="__codelineno-0-565"></a>                <span class="n">x_input</span> <span class="o">=</span> <span class="n">x_old</span>
+<a id="__codelineno-0-566" name="__codelineno-0-566"></a>            <span class="k">elif</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;fast&#39;</span><span class="p">:</span>  <span class="c1"># Yang et al. (2013)</span>
+<a id="__codelineno-0-567" name="__codelineno-0-567"></a>                <span class="c1"># improved convergence</span>
+<a id="__codelineno-0-568" name="__codelineno-0-568"></a>                <span class="n">v1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+<a id="__codelineno-0-569" name="__codelineno-0-569"></a>                <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Gan et al. (2015)</span>
+<a id="__codelineno-0-570" name="__codelineno-0-570"></a>                <span class="n">v</span> <span class="o">=</span> <span class="n">v1</span>
+<a id="__codelineno-0-571" name="__codelineno-0-571"></a>                <span class="n">x_input</span> <span class="o">=</span> <span class="n">x_inv</span> <span class="o">+</span> <span class="n">frac</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_inv</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span>  <span class="c1"># prediction</span>
+<a id="__codelineno-0-572" name="__codelineno-0-572"></a>            <span class="k">elif</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;adaptive&#39;</span><span class="p">:</span>  <span class="c1"># Wang et al. (2015, 2016)</span>
+<a id="__codelineno-0-573" name="__codelineno-0-573"></a>                <span class="c1"># init adaptive input data</span>
+<a id="__codelineno-0-574" name="__codelineno-0-574"></a>                <span class="n">x_tmp</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">mask</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_old</span>
+<a id="__codelineno-0-575" name="__codelineno-0-575"></a>                <span class="n">x_input</span> <span class="o">=</span> <span class="n">x_tmp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mask</span> <span class="o">*</span> <span class="n">x_old</span><span class="p">)</span>
+<a id="__codelineno-0-576" name="__codelineno-0-576"></a>                <span class="c1"># x_input = x_inv + (1 - alpha) * (x - mask * x_old)</span>
+<a id="__codelineno-0-577" name="__codelineno-0-577"></a>
+<a id="__codelineno-0-578" name="__codelineno-0-578"></a>            <span class="c1"># (1) forward transform</span>
+<a id="__codelineno-0-579" name="__codelineno-0-579"></a>            <span class="k">if</span> <span class="p">(</span>
+<a id="__codelineno-0-580" name="__codelineno-0-580"></a>                <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;CURVELET&#39;</span>
+<a id="__codelineno-0-581" name="__codelineno-0-581"></a>                <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-582" name="__codelineno-0-582"></a>                <span class="ow">and</span> <span class="n">transform</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;matvec&#39;</span>
+<a id="__codelineno-0-583" name="__codelineno-0-583"></a>            <span class="p">):</span>
+<a id="__codelineno-0-584" name="__codelineno-0-584"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<a id="__codelineno-0-585" name="__codelineno-0-585"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-586" name="__codelineno-0-586"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="p">)</span>
+<a id="__codelineno-0-587" name="__codelineno-0-587"></a>                <span class="n">lowpass</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-0-588" name="__codelineno-0-588"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<a id="__codelineno-0-589" name="__codelineno-0-589"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-590" name="__codelineno-0-590"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">auxiliary_data</span><span class="p">)</span>
+<a id="__codelineno-0-591" name="__codelineno-0-591"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-592" name="__codelineno-0-592"></a>                <span class="n">X</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">x_input</span><span class="p">)</span>
+<a id="__codelineno-0-593" name="__codelineno-0-593"></a>
+<a id="__codelineno-0-594" name="__codelineno-0-594"></a>            <span class="c1"># (2) thresholding</span>
+<a id="__codelineno-0-595" name="__codelineno-0-595"></a>            <span class="n">_decay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">decay</span><span class="p">[</span><span class="n">iiter</span><span class="p">])</span> <span class="k">if</span> <span class="n">sqrt_decay</span> <span class="k">else</span> <span class="n">decay</span><span class="p">[</span><span class="n">iiter</span><span class="p">]</span>
+<a id="__codelineno-0-596" name="__codelineno-0-596"></a>            <span class="k">if</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-0-597" name="__codelineno-0-597"></a>                <span class="n">X_thresh</span> <span class="o">=</span> <span class="n">threshold_wavelet</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">_decay</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">thresh_op</span><span class="p">)</span>
+<a id="__codelineno-0-598" name="__codelineno-0-598"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-599" name="__codelineno-0-599"></a>                <span class="n">X_thresh</span> <span class="o">=</span> <span class="n">threshold</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">_decay</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">thresh_op</span><span class="p">)</span>
+<a id="__codelineno-0-600" name="__codelineno-0-600"></a>
+<a id="__codelineno-0-601" name="__codelineno-0-601"></a>            <span class="c1"># (3) inverse transform</span>
+<a id="__codelineno-0-602" name="__codelineno-0-602"></a>            <span class="k">if</span> <span class="p">(</span>
+<a id="__codelineno-0-603" name="__codelineno-0-603"></a>                <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;CURVELET&#39;</span>
+<a id="__codelineno-0-604" name="__codelineno-0-604"></a>                <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">itransform</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-605" name="__codelineno-0-605"></a>                <span class="ow">and</span> <span class="n">itransform</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;rmatvec&#39;</span>
+<a id="__codelineno-0-606" name="__codelineno-0-606"></a>            <span class="p">):</span>
+<a id="__codelineno-0-607" name="__codelineno-0-607"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">(</span><span class="n">X_thresh</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<a id="__codelineno-0-608" name="__codelineno-0-608"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;WAVELET&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-609" name="__codelineno-0-609"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">([</span><span class="n">lowpass</span><span class="p">]</span> <span class="o">+</span> <span class="n">X_thresh</span><span class="p">)[</span><span class="n">original_shape</span><span class="p">]</span>
+<a id="__codelineno-0-610" name="__codelineno-0-610"></a>            <span class="k">elif</span> <span class="n">transform_kind</span> <span class="o">==</span> <span class="s1">&#39;SHEARLET&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-611" name="__codelineno-0-611"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">(</span><span class="n">X_thresh</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">auxiliary_data</span><span class="p">)</span>
+<a id="__codelineno-0-612" name="__codelineno-0-612"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-613" name="__codelineno-0-613"></a>                <span class="n">x_inv</span> <span class="o">=</span> <span class="n">itransform</span><span class="p">(</span><span class="n">X_thresh</span><span class="p">)</span>
+<a id="__codelineno-0-614" name="__codelineno-0-614"></a>
+<a id="__codelineno-0-615" name="__codelineno-0-615"></a>            <span class="c1"># (4) apply mask (scaled by weighting factor)</span>
+<a id="__codelineno-0-616" name="__codelineno-0-616"></a>            <span class="n">x_inv</span> <span class="o">*=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">mask</span>
+<a id="__codelineno-0-617" name="__codelineno-0-617"></a>
+<a id="__codelineno-0-618" name="__codelineno-0-618"></a>            <span class="c1"># (5) add original data (scaled by weighting factor)</span>
+<a id="__codelineno-0-619" name="__codelineno-0-619"></a>            <span class="n">x_inv</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">alpha</span>
+<a id="__codelineno-0-620" name="__codelineno-0-620"></a>
+<a id="__codelineno-0-621" name="__codelineno-0-621"></a>            <span class="c1"># cost function from Gao et al. (2013)</span>
+<a id="__codelineno-0-622" name="__codelineno-0-622"></a>            <span class="n">cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_inv</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_old</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_inv</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+<a id="__codelineno-0-623" name="__codelineno-0-623"></a>            <span class="k">if</span> <span class="n">path_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-624" name="__codelineno-0-624"></a>                <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+<a id="__codelineno-0-625" name="__codelineno-0-625"></a>            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<a id="__codelineno-0-626" name="__codelineno-0-626"></a>                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[INFO]   cost:&#39;</span><span class="p">,</span> <span class="n">cost</span><span class="p">)</span>
+<a id="__codelineno-0-627" name="__codelineno-0-627"></a>
+<a id="__codelineno-0-628" name="__codelineno-0-628"></a>            <span class="c1"># set result from previous iteration as new input</span>
+<a id="__codelineno-0-629" name="__codelineno-0-629"></a>            <span class="n">x_old</span> <span class="o">=</span> <span class="n">x_inv</span>
+<a id="__codelineno-0-630" name="__codelineno-0-630"></a>
+<a id="__codelineno-0-631" name="__codelineno-0-631"></a>            <span class="k">if</span> <span class="n">iiter</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+<a id="__codelineno-0-632" name="__codelineno-0-632"></a>                <span class="k">break</span>
+<a id="__codelineno-0-633" name="__codelineno-0-633"></a>
+<a id="__codelineno-0-634" name="__codelineno-0-634"></a>        <span class="n">niterations</span> <span class="o">=</span> <span class="n">iiter</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-0-635" name="__codelineno-0-635"></a>        <span class="n">runtime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+<a id="__codelineno-0-636" name="__codelineno-0-636"></a>
+<a id="__codelineno-0-637" name="__codelineno-0-637"></a>    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<a id="__codelineno-0-638" name="__codelineno-0-638"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-0-639" name="__codelineno-0-639"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;# iterations:  </span><span class="si">{</span><span class="n">niterations</span><span class="si">:</span><span class="s1">4d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-640" name="__codelineno-0-640"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cost function: </span><span class="si">{</span><span class="n">cost</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-641" name="__codelineno-0-641"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;runtime:       </span><span class="si">{</span><span class="n">runtime</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-642" name="__codelineno-0-642"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-0-643" name="__codelineno-0-643"></a>
+<a id="__codelineno-0-644" name="__codelineno-0-644"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">results_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-0-645" name="__codelineno-0-645"></a>        <span class="n">results_dict</span><span class="p">[</span><span class="s1">&#39;niterations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">niterations</span>
+<a id="__codelineno-0-646" name="__codelineno-0-646"></a>        <span class="n">results_dict</span><span class="p">[</span><span class="s1">&#39;runtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">runtime</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-0-647" name="__codelineno-0-647"></a>        <span class="n">results_dict</span><span class="p">[</span><span class="s1">&#39;cost&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost</span>
+<a id="__codelineno-0-648" name="__codelineno-0-648"></a>
+<a id="__codelineno-0-649" name="__codelineno-0-649"></a>    <span class="k">if</span> <span class="n">path_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-650" name="__codelineno-0-650"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_results</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-651" name="__codelineno-0-651"></a>            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">niterations</span><span class="p">,</span> <span class="n">runtime</span><span class="p">]</span> <span class="o">+</span> <span class="n">costs</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-652" name="__codelineno-0-652"></a>
+<a id="__codelineno-0-653" name="__codelineno-0-653"></a>    <span class="k">if</span> <span class="n">is_complex_input</span><span class="p">:</span>
+<a id="__codelineno-0-654" name="__codelineno-0-654"></a>        <span class="k">return</span> <span class="n">x_inv</span>
+<a id="__codelineno-0-655" name="__codelineno-0-655"></a>
+<a id="__codelineno-0-656" name="__codelineno-0-656"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">x_inv</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
