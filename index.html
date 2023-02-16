@@ -15,7 +15,7 @@
         <link rel="next" href="2D/merge_segys/">
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.9">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
     
     
       
@@ -369,15 +369,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-from-github-repository" class="md-nav__link">
-    1) From GitHub repository
+  <a href="#a-from-github-repository" class="md-nav__link">
+    A) From GitHub repository
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-local-installation" class="md-nav__link">
-    2) Local installation
+  <a href="#b-local-installation" class="md-nav__link">
+    B) Local installation
   </a>
   
 </li>
@@ -391,6 +391,26 @@
   <a href="#workflow-structure" class="md-nav__link">
     Workflow structure
   </a>
+  
+    <nav class="md-nav" aria-label="Workflow structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2d-profile-processing" class="md-nav__link">
+    2D profile processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-interpolation" class="md-nav__link">
+    3D interpolation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1218,15 +1238,18 @@
 <p>The source code accompanies a journal article published in <mark><a href="">Geophysical Journal International</a></mark>:</p>
 <div class="highlight"><pre><span></span><code>Warnke et al. (2023) Geophysical Journal International
 </code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Usage information</p>
 <p>When using this workflow please refer to the <a href="citation/">citation information</a> and, in case of feedback or questions, the <a href="contact/">contact information</a>.</p>
+</div>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
 <p>This worfklow can be installed in two ways:</p>
-<h3 id="1-from-github-repository">1) From GitHub repository<a class="headerlink" href="#1-from-github-repository" title="Permanent link">#</a></h3>
+<h3 id="a-from-github-repository">A) From GitHub repository<a class="headerlink" href="#a-from-github-repository" title="Permanent link">#</a></h3>
 <p>The workflow packages can be installed directly from GitHub:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt;&gt;&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/fwrnke/pseudo-3D-interpolation.git
 </code></pre></div>
 <p>This installs all required dependencies and the workflow packages in your current (virtual) environment.</p>
-<h3 id="2-local-installation">2) Local installation<a class="headerlink" href="#2-local-installation" title="Permanent link">#</a></h3>
+<h3 id="b-local-installation">B) Local installation<a class="headerlink" href="#b-local-installation" title="Permanent link">#</a></h3>
 <p>Alternatively, the workflow can be installed locally after downloading and unzipping the source code using the <a href="https://github.com/fwrnke/pseudo-3D-interpolation/archive/refs/heads/main.zip">ZIP archive</a> from GitHub.</p>
 <p>Navigate into the unzipped directory:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./pseudo-3D-interpolation<span class="w">  </span><span class="c1"># root directory of unzipped package</span>
@@ -1264,6 +1287,7 @@ Please refer to the <a href="https://github.com/PyLops/curvelops#readme">README<
 <li><strong>2D (pre-)processing</strong> of individual profiles</li>
 <li><strong>3D interpolation</strong> of binned, sparse cube</li>
 </ol>
+<h3 id="2d-profile-processing">2D profile processing<a class="headerlink" href="#2d-profile-processing" title="Permanent link">#</a></h3>
 <p>The most essential pre-processing steps for a subsequent 3D interpolation aim to correct the vertical offset between the input profiles. Without a sufficient correction, such offsets, especially at profile intersections, result in low quality interpolation outputs. This issue is addressed by three processing steps in the fist stage (<strong>Figure 1</strong>, <em>upper panel</em>):</p>
 <ul>
 <li><a href="2D/static_correction/">Static correction</a> (per profile)</li>
@@ -1289,6 +1313,7 @@ Please refer to the <a href="https://github.com/PyLops/curvelops#readme">README<
 |-- datalist.txt
 </code></pre></div>
 </div>
+<h3 id="3d-interpolation">3D interpolation<a class="headerlink" href="#3d-interpolation" title="Permanent link">#</a></h3>
 <p>In the second stage, the following processing steps are conducted (<strong>Figure 1</strong>, <em>lower panel</em>):</p>
 <ul>
 <li><a href="3D/cube_binning_geometry/">Binning and geometry setup</a></li>
@@ -1380,6 +1405,8 @@ Ship time was supported by the Ministry of Business, Innovation and Employment (
   
     
     
+    
+    
       
       
     
@@ -1387,6 +1414,8 @@ Ship time was supported by the Ministry of Business, Innovation and Employment (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 21 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"/></svg>
     </a>
   
+    
+    
     
     
       
@@ -1398,6 +1427,8 @@ Ship time was supported by the Ministry of Business, Innovation and Employment (
   
     
     
+    
+    
       
       
     
@@ -1405,6 +1436,8 @@ Ship time was supported by the Ministry of Business, Innovation and Employment (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
+    
+    
     
     
       
@@ -1416,6 +1449,8 @@ Ship time was supported by the Ministry of Business, Innovation and Employment (
   
     
     
+    
+    
       
       
     
@@ -1423,6 +1458,8 @@ Ship time was supported by the Ministry of Business, Innovation and Employment (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
     </a>
   
+    
+    
     
     
       
@@ -1446,7 +1483,7 @@ Ship time was supported by the Ministry of Business, Innovation and Employment (
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.tabs", "navigation.tabs.sticky", "toc.integrate"], "search": "assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      <script src="assets/javascripts/bundle.4b2c34cd.min.js"></script>
       
         <script src="javascripts/mathjax.js"></script>
       
