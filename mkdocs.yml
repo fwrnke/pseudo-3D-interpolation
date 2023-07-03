@@ -1,0 +1,143 @@
+site_name: Pseudo-3D interpolation workflow
+site_url: https://fwrnke.github.io/pseudo-3D-interpolation/
+
+repo_name: Pseudo-3D interpolation
+repo_url: https://github.com/fwrnke/pseudo-3D-interpolation
+
+remote_name: public
+
+nav:
+  - 'Overview': index.md  #TODO: index_backup.md
+  - 'User Guide': 
+      - 'Workflow': workflow.md
+      - '2D processing':
+        - 'SEG-Y merging': 2D/merge_segys.md
+        - 'Coordinate conversion': 2D/coordinate_conversion.md
+        - 'DelayRecordingTime correction': 2D/correct_delrt.md
+        - 'Vertical offsets padding': 2D/pad_vertical_offsets.md
+        - 'Static correction': 2D/static_correction.md
+        - 'Tide compensation': 2D/tide_compensation.md
+        - 'Mistie correction': 2D/mistie_correction.md
+        - 'Despiking': 2D/2D_despike.md
+        - 'SEG-Y to netCDF conversion': 2D/convert_segy2netcdf.md
+      - '3D interpolation':
+        - 'Binning': 3D/cube_binning_geometry.md
+        - 'Pre-processing': 3D/preprocessing_3D.md
+        - 'Time to frequency domain (forward FFT)': 3D/apply_FFT_3D.md
+        - '3D interpolation (POCS)': 3D/3D_cube_interpolation.md
+        - 'Frequency to time domain (inverse FFT)': 3D/apply_inverse_FFT_3D.md
+        - 'Post-processing': 3D/postprocessing_3D.md
+        - 'netCDF to SEG-Y conversion': 3D/convert_netcdf2segy_3D.md
+      - 'Example outputs': results.md
+  - 'Citation': citation.md
+  - 'Contact': contact.md
+  - 'License': license.md
+  - 'API documentation':
+    - '01_merge_segys': api/api_merge_segys.md
+    - '02_reproject_segy': api/api_reproject_segy.md
+    - '03_correct_delrt': api/api_delrt_correction_segy.md
+    - '04_pad_delrt': api/api_delrt_padding_segy.md
+    - '05_correct_static': api/api_static_correction_segy.md
+    - '06_compensate_tide': api/api_tide_compensation_segy.md
+    - '07_correct_mistie': api/api_mistie_correction_segy.md
+    - '08_despike': api/api_despiking_2D_segy.md
+    - '09_convert_segy2netcdf': api/api_cnv_segy2netcdf.md
+    - '10_cube_geometry_binning': api/api_cube_binning_3D.md
+    - '11_cube_preprocessing': api/api_cube_preprocessing_3D.md
+    - '12_cube_apply_FFT': api/api_cube_apply_FFT.md
+    - '13_cube_interpolate_POCS': api/api_cube_POCS_interpolation_3D.md
+    - '14_cube_apply_IFFT': api/api_cube_apply_IFFT.md
+    - '15_cube_postprocessing': api/api_cube_postprocessing_3D.md
+    - '16_cube_cnv_netcdf2segy': api/api_cube_cnv_netcdf2segy_3D.md
+    - 'Functions':
+        - 'backends': api/functions/api_backends.md
+        - 'filter': api/functions/api_filter.md
+        - 'header': api/functions/api_header.md
+        - 'plot': api/functions/api_plot.md
+        - 'POCS': api/functions/api_POCS.md
+        - 'signal': api/functions/api_signal.md
+        - 'threshold_operator': api/functions/api_threshold_operator.md
+        - 'transform': api/functions/api_transform.md
+        - 'utils': api/functions/api_utils.md
+        - 'utils_io': api/functions/api_utils_io.md
+
+theme:
+  name: material
+  palette:
+    primary: blue grey
+    accent: teal
+  features:
+    - search.highlight
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.integrate
+  icon:
+    logo: material/cube-outline
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      type: custom
+      custom_format: "%A, %d %B %Y at %H:%M:%S"  # Mon, 1 January 2023 at 14:53:23
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            paths: [.]
+            docstring_style: numpy
+            heading_level: 3
+            show_root_heading: false
+            show_root_toc_entry: false
+            show_submodules: true
+            show_source: true
+            docstring_section_style: list
+            line_length: 120
+            show_signature_annotations: false
+            members_order: source  # alphabetical
+
+markdown_extensions:
+  - toc:
+      permalink: "#"
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+      
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  social:
+    # - icon: fontawesome/solid/globe
+      # link: https://github.com/fwrnke
+    - icon: fontawesome/brands/github
+      link: https://github.com/fwrnke
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/fwrnke
+    - icon: fontawesome/brands/researchgate
+      link: https://www.researchgate.net/profile/Fynn-Warnke
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/fynn-warnke
+    - icon: fontawesome/brands/orcid
+      link: https://orcid.org/0000-0002-7477-5058
+    
+copyright: Copyright &copy; 2022 Fynn Warnke

@@ -1,0 +1,51 @@
+name: pseudo_3D_dev
+channels:
+  - numba
+  - conda-forge
+dependencies:
+  - bottleneck
+  - dask
+  - distributed
+  - git
+  - h5netcdf
+  - matplotlib
+  - numpy>=1.20.0
+  - pandas
+  - pip
+  - pyproj
+  - python=3.9
+  - scipy>=1.8
+  - segyio
+  - shapely>=2.0
+  - tqdm
+  - xarray
+  # transforms
+  - pylops>=2.0
+  - pywavelets
+  # extra
+  - geopandas
+  - numba
+  - icc_rt  # for numba
+  # plot
+  - pyvista
+  - rioxarray
+  # dev
+  - spyder-kernels=2.4  # required for Spyder IDE v5.4.2
+  - pip:
+    - segysak
+    # dev
+    - black   # code style)
+    - flake8  # linting
+    # docs
+    - mkdocs  # docs
+    - mkdocs-autorefs
+    - mkdocs-material
+    - mkdocs-material-extensions
+    - mkdocs-git-revision-date-localized-plugin
+    - mkdocstrings
+    - mkdocstrings-python
+    - pydocstringformatter
+    - git+https://github.com/fwrnke/xrft.git
+    - git+https://github.com/fwrnke/tpxo-tide-prediction.git  # tide
+    - git+https://github.com/fwrnke/PyShearlets.git  # transforms
+prefix: 

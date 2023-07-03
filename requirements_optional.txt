@@ -1,0 +1,15 @@
+# required dependencies
+-r requirements.txt
+
+# optional workflow dependencies
+## tide
+tpxo-tide-prediction @ git+https://github.com/fwrnke/tpxo-tide-prediction.git
+
+## transforms
+pylops>=2.0
+pywavelets
+pyshearlets @ git+https://github.com/fwrnke/PyShearlets.git
+
+## extra
+geopandas
+numba

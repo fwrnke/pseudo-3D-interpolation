@@ -1,0 +1,14 @@
+python>=3.9
+dask[complete]
+matplotlib
+numpy>=1.20.0
+pandas
+pip
+pyproj
+scipy>=1.8
+segyio
+segysak
+shapely>=2.0
+tqdm
+xarray[complete]
+xrft @ git+https://github.com/fwrnke/xrft.git

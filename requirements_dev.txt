@@ -1,0 +1,25 @@
+# required dependencies
+-r requirements.txt
+
+# optional workflow dependencies
+-r requirements_optional.txt
+
+# developer dependencies
+## docs
+mkdocs
+mkdocs-autorefs
+mkdocs-material
+mkdocs-material-extensions
+mkdocs-git-revision-date-localized-plugin
+mkdocstrings
+mkdocstrings-python
+pydocstringformatter
+
+## plot
+pyvista
+rioxarray
+
+## dev
+black
+flake8
+spyder-kernels=2.4

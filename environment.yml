@@ -1,0 +1,24 @@
+name: pseudo_3D
+channels:
+  - conda-forge
+dependencies:
+  - bottleneck
+  - dask
+  - distributed
+  - git
+  - h5netcdf
+  - matplotlib
+  - numpy>=1.20.0
+  - pandas
+  - pip
+  - pyproj
+  - python=3.9
+  - scipy>=1.8
+  - segyio
+  - shapely>=2.0
+  - tqdm
+  - xarray
+  - pip:
+    - segysak
+    - git+https://github.com/fwrnke/xrft.git
+prefix: 

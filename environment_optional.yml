@@ -1,0 +1,34 @@
+name: pseudo_3D
+channels:
+  - numba
+  - conda-forge
+dependencies:
+  - bottleneck
+  - dask
+  - distributed
+  - git
+  - h5netcdf
+  - matplotlib
+  - numpy>=1.20.0
+  - pandas
+  - pip
+  - pyproj
+  - python=3.9
+  - scipy>=1.8
+  - segyio
+  - shapely>=2.0
+  - tqdm
+  - xarray
+  # transforms
+  - pylops>=2.0
+  - pywavelets
+  # extra
+  - geopandas
+  - numba
+  - icc_rt  # for numba
+  - pip:
+    - segysak
+    - git+https://github.com/fwrnke/xrft.git
+    - git+https://github.com/fwrnke/tpxo-tide-prediction.git  # tide
+    - git+https://github.com/fwrnke/PyShearlets.git  # transforms
+prefix: 
