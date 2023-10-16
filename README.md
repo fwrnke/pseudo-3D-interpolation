@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7647497.svg)](https://doi.org/10.5281/zenodo.7647497)
+
 # Pseudo-3D interpolation workflow
 
 Interpolation workflow to generate pseudo-3D cubes from multiple 2D seismo-acoustic profiles.
